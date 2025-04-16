@@ -1,0 +1,133 @@
+/* /css/styles.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #111;
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar a:hover {
+    color: #fbbf24;
+  }
+  
+  header, main, footer {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #e2e8f0;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+  }
+  
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .category-box {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-box:hover {
+    transform: scale(1.05);
+  }
+  
+  .category-box img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .product-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  .product-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    padding: 0.5rem 1rem;
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #15803d;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+    gap: 1rem;
+  }
+  
+  .login-form input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #111;
+    color: white;
+    margin-top: 2rem;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  @media (max-width: 600px) {
+    .navbar {
+      flex-direction: column;
+    }
+  }
+  
