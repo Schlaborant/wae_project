@@ -1,15 +1,33 @@
 <?php
-if(isset($_POST["submit"])){
+session_start(); // Session starten
+
+if($_SERVER["REQUEST_METHOD"] == "POST") { // Anfordern die per POST gesendet wurde.
     require("../db.php");
-    $stmt = $mysql->prepare("SELECT * FROM users WHERE username =:user "); //Username überprüfen
-    $stmt->bindParam(":user", $_POST["username"]);
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $stmt = $mysql->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt->bindParam(":username", $username);
     $stmt->execute();
-    $count = $stmt->rowCount();
-    if($count === 0){
-        if($_POST["username"] == $_POST[""])
+    $userExists = $stmt->fetch(); // fetchAll() durch fetch() ersetzt, da wir nur einen Datensatz erwarten
+
+    if ($userExists) {
+        $passwordHashed = $userExists["password"];
+        $checkPassword = password_verify($password, $passwordHashed);
+
+        if($checkPassword === true){
+            $_SESSION["username"] = $username;
+            header("Location: ../index.html");
+            exit; // Vergessen Sie nicht exit nach header.
+        } else {
+            echo "Login fehlgeschlagen (Passwort)";
+        }
     } else {
-        echo "Username does not exist";
+        echo "Login fehlgeschlagen (Benutzername)";
     }
+} else {
+    echo "Kein POST-Daten empfangen";
 }
 ?>
 
@@ -61,5 +79,6 @@ if(isset($_POST["submit"])){
 
     <!-- Bootstrap JS (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../javascript/login.js" defer></script>
 </body>
 </html>

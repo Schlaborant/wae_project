@@ -1,8 +1,8 @@
 <?php
-$host = 'localadmin';
-$name = 'x';
-$user = "x";
-$password = "x";
+$host = 'localhost';
+$name = 'mealy_shop';
+$user = "admin";
+$password = "admin";
 try{
     $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $password);
 } catch (PDOException $e){

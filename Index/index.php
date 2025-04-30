@@ -8,6 +8,13 @@
   <script src="../javascript/script.js" defer></script>
 </head>
 <body>
+
+  <?php
+    session_start();
+    echo $_SESSION["username"];
+    echo password_hash("admin", PASSWORD_DEFAULT); 
+  ?>
+
   <header>
     <nav class="navbar">
       <a href="#">Home</a>
