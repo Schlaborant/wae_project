@@ -68,36 +68,71 @@ h1 {
   overflow: hidden;
   text-align: center;
   transition: transform 0.3s ease;
-  padding-bottom: 1rem;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
 }
 
 .product-card:hover {
   transform: translateY(-6px);
 }
 
-.product-card img {
-  width: 80%;
-  height: auto;
+/* Neues Bild-Layout */
+.product-image-wrapper {
+  height: 220px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image-wrapper img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  margin: 0 auto;
   border-radius: 8px;
+}
+
+.product-card h2 {
+  font-size: 1.6rem;
   margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.product-card p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #922185;
+  margin: 0.5rem 0 1rem;
 }
 
 /* Buttons */
 button {
-  padding: 0.5rem 1rem;
-  background-color: #16a34a;
-  color: white;
+  padding: 0.75rem 1.5rem;
+  background-color: #a44c9a;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-  background-color: #15803d;
+  background-color: #69175f;
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(21, 128, 61, 0.35);
 }
 
 /* Login Formular */

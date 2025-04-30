@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Proteinpulver</title>
-  <link rel="stylesheet" href="/css/styles.css"/>
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="/Index/css/styles.css"/>
+  <script src="/Index/javascript/script.js" defer></script>
 </head>
 <body>
   <header>
@@ -22,18 +22,25 @@
   <main>
     <h1>Proteinpulver</h1>
     <div class="product-grid">
+      
       <div class="product-card">
-        <img src="test.jpg" alt="Whey Protein">
-        <h3>Whey Protein</h3>
+        <div class="product-image-wrapper">
+          <img src="/Index/Bilder/perdbeere2.png" alt="Whey Protein">
+        </div>
+        <h2>Whey Protein</h2>
         <p>29,99€</p>
         <button onclick="addToCart('Whey Protein', 29.99)">In den Warenkorb</button>
       </div>
+
       <div class="product-card">
-        <img src="https://via.placeholder.com/300x200?text=Vegan+Protein" alt="Vegan Protein">
-        <h3>Veganes Protein</h3>
+        <div class="product-image-wrapper">
+          <img src="https://via.placeholder.com/300x200?text=Vegan+Protein" alt="Veganes Protein">
+        </div>
+        <h2>Veganes Protein</h2>
         <p>32,99€</p>
         <button onclick="addToCart('Veganes Protein', 32.99)">In den Warenkorb</button>
       </div>
+
     </div>
   </main>
 
