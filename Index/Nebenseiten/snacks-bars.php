@@ -33,7 +33,7 @@
 
       <div class="product-card">
         <div class="product-image-wrapper">
-          <img src="../Bilder/perdbeere2.png" alt="Energiebällchen">
+          <img src="../Bilder/energiebaellchen.png" alt="Energiebällchen">
         </div>
         <h2>Energiebällchen</h2>
         <p>3,99€</p>
