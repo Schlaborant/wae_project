@@ -23,13 +23,13 @@
     <h1>Vitalstoffe</h1>
     <div class="product-grid">
       <div class="product-card">
-        <img src="https://via.placeholder.com/300x200?text=Multivitamin" alt="Multivitamin">
+        <img src="../Bilder/perdbeere2.png" alt="Multivitamin">
         <h3>Multivitamin</h3>
         <p>14,99€</p>
         <button onclick="addToCart('Multivitamin', 14.99)">In den Warenkorb</button>
       </div>
       <div class="product-card">
-        <img src="https://via.placeholder.com/300x200?text=Omega+3" alt="Omega 3">
+        <img src="../Bilder/perdbeere2.png" alt="Omega 3">
         <h3>Omega 3</h3>
         <p>19,99€</p>
         <button onclick="addToCart('Omega 3', 19.99)">In den Warenkorb</button>

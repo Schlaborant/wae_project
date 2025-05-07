@@ -26,7 +26,7 @@
       
       <div class="product-card">
         <div class="product-image-wrapper">
-          <img src="/Index/Bilder/perdbeere2.png" alt="Whey Protein">
+          <img src="../Bilder/perdbeere2.png" alt="Whey Protein">
         </div>
         <h2>Whey Protein</h2>
         <p>29,99€</p>
@@ -35,7 +35,7 @@
 
       <div class="product-card">
         <div class="product-image-wrapper">
-          <img src="https://via.placeholder.com/300x200?text=Vegan+Protein" alt="Veganes Protein">
+          <img src="../Bilder/perdbeere2.png" alt="Veganes Protein">
         </div>
         <h2>Veganes Protein</h2>
         <p>32,99€</p>
