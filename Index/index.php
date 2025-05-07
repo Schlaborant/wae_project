@@ -10,12 +10,12 @@
 <body>
   <header>
     <nav class="navbar">
-      <a href="index.html">Home</a>
-      <a href="Nebenseiten/proteinpulver.html">Proteinpulver</a>
-      <a href="Nebenseiten/vitalstoffe.html">Vitalstoffe</a>
-      <a href="Nebenseiten/snacks-bars.html">Snacks & Bars</a>
-      <a href="Nebenseiten/warenkorb.html">Warenkorb 🛒</a>
-      <a href="Nebenseiten/login.html">Login</a>
+      <a href="index.php">Home</a>
+      <a href="Nebenseiten/proteinpulver.php">Proteinpulver</a>
+      <a href="Nebenseiten/vitalstoffe.php">Vitalstoffe</a>
+      <a href="Nebenseiten/snacks-bars.php">Snacks & Bars</a>
+      <a href="Nebenseiten/warenkorb.php">Warenkorb 🛒</a>
+      <a href="Nebenseiten/login.php">Login</a>
     </nav>
   </header>
 
@@ -23,21 +23,21 @@
     <h1>Willkommen im Fitness Shop!</h1>
     <section class="category-grid">
       
-      <a href="Nebenseiten/proteinpulver.html" class="category-box">
+      <a href="Nebenseiten/proteinpulver.php" class="category-box">
         <div class="category-image-wrapper">
           <img src="Bilder/perdbeere2.png" alt="Proteinpulver">
         </div>
         <h2>Proteinpulver</h2>
       </a>
       
-      <a href="Nebenseiten/vitalstoffe.html" class="category-box">
+      <a href="Nebenseiten/vitalstoffe.php" class="category-box">
         <div class="category-image-wrapper">
           <img src="Bilder/psand.png" alt="Vitalstoffe">
         </div>
         <h2>Vitalstoffe</h2>
       </a>
       
-      <a href="Nebenseiten/snacks-bars.html" class="category-box">
+      <a href="Nebenseiten/snacks-bars.php" class="category-box">
         <div class="category-image-wrapper">
           <img src="Bilder/pschoko.JPG" alt="Snacks & Bars">
         </div>

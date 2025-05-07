@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vitalstoffe</title>
-  <link rel="stylesheet" href="/Index/css/styles.css"/>
-  <script src="/Index/javascript/script.js" defer></script>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <script src="../javascript/script.js" defer></script>
 </head>
 <body>
   <header>
     <nav class="navbar">
-      <a href="/Index/index.html">Home</a>
-      <a href="proteinpulver.html">Proteinpulver</a>
-      <a href="vitalstoffe.html">Vitalstoffe</a>
-      <a href="snacks-bars.html">Snacks & Bars</a>
-      <a href="warenkorb.html">Warenkorb 🛒</a>
-      <a href="login.html">Login</a>
+      <a href="../index.php">Home</a>
+      <a href="proteinpulver.php">Proteinpulver</a>
+      <a href="vitalstoffe.php">Vitalstoffe</a>
+      <a href="snacks-bars.php">Snacks & Bars</a>
+      <a href="warenkorb.php">Warenkorb 🛒</a>
+      <a href="login.php">Login</a>
     </nav>
   </header>
 
