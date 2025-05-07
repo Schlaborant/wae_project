@@ -46,7 +46,7 @@ $products = $stmt->fetchAll();
           <!-- für jedes Produkt NUR eine product-card -->
           <div class="product-card">
             <div class="product-image-wrapper">
-              <img src="<?= $img ?>" alt="<?= $name ?>">
+              <img src="../Bilder/<?= $img ?>" alt="<?= $name ?>">
             </div>
             <h2><?= $name ?></h2>
             <p><?= $price ?>€</p>
