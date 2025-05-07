@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 session_start();
 require 'db.php';
 
@@ -7,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id, password_hash FROM users WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
@@ -29,39 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt->close();
-=======
-session_start(); // Session starten
-
-if($_SERVER["REQUEST_METHOD"] == "POST") { // Anfordern die per POST gesendet wurde.
-    require("../db.php");
-
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    $stmt = $mysql->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->bindParam(":username", $username);
-    $stmt->execute();
-    $userExists = $stmt->fetch(); // fetchAll() durch fetch() ersetzt, da wir nur einen Datensatz erwarten
-
-    if ($userExists) {
-        $passwordHashed = $userExists["password"];
-        $checkPassword = password_verify($password, $passwordHashed);
-
-        if($checkPassword === true){
-            $_SESSION["username"] = $username;
-            header("Location: ../index.html");
-            exit; // Vergessen Sie nicht exit nach header.
-        } else {
-            echo "Login fehlgeschlagen (Passwort)";
-        }
-    } else {
-        echo "Login fehlgeschlagen (Benutzername)";
-    }
-} else {
-    echo "Kein POST-Daten empfangen";
->>>>>>> 6b9fe20393d47f88a3fad7db8de0f05b3f45740d
 }
 ?>
+
 
 <html lang="de">
 <head>
