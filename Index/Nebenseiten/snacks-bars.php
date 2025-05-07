@@ -24,15 +24,18 @@
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image-wrapper">
-        <img src="../Bilder/perdbeere2.png" alt="Proteinriegel">
-      </div>
-        <h3>Protein Riegel</h3>
+          <img src="../Bilder/perdbeere2.png" alt="Proteinriegel">
+        </div>
+        <h2>Protein Riegel</h2>
         <p>2,99€</p>
         <button onclick="addToCart('Protein Riegel', 2.99)">In den Warenkorb</button>
       </div>
+
       <div class="product-card">
-        <img src="../Bilder/perdbeere2.png" alt="Energiebällchen">
-        <h3>Energiebällchen</h3>
+        <div class="product-image-wrapper">
+          <img src="../Bilder/perdbeere2.png" alt="Energiebällchen">
+        </div>
+        <h2>Energiebällchen</h2>
         <p>3,99€</p>
         <button onclick="addToCart('Energiebällchen', 3.99)">In den Warenkorb</button>
       </div>

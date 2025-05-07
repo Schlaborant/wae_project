@@ -22,8 +22,7 @@
 
   <main>
     <h1>Proteinpulver</h1>
-    <div class="product-grid">
-      
+    <div class="product-grid"> 
       <div class="product-card">
         <div class="product-image-wrapper">
           <img src="../Bilder/perdbeere2.png" alt="Whey Protein">
