@@ -1,3 +1,16 @@
+
+<?php
+include("../db.php");
+
+$stmt = $mysql->prepare("
+  SELECT name, price, image_url
+  FROM products 
+  WHERE category = ?");
+$stmt->execute(['snacks-bars']);
+$products = $stmt->fetchAll();
+?>
+
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -21,29 +34,37 @@
 
   <main>
     <h1>Snacks & Bars</h1>
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="product-image-wrapper">
-          <img src="../Bilder/perdbeere2.png" alt="Proteinriegel">
-        </div>
-        <h2>Protein Riegel</h2>
-        <p>2,99€</p>
-        <button onclick="addToCart('Protein Riegel', 2.99)">In den Warenkorb</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image-wrapper">
-          <img src="../Bilder/energiebaellchen.png" alt="Energiebällchen">
-        </div>
-        <h2>Energiebällchen</h2>
-        <p>3,99€</p>
-        <button onclick="addToCart('Energiebällchen', 3.99)">In den Warenkorb</button>
-      </div>
+<!-- EIN Wrapper für alle Cards -->
+<div class="product-grid">
+      <?php if (empty($products)): ?>
+        <p>Keine Produkte gefunden.</p>
+      <?php else: ?>
+        <?php foreach ($products as $p):
+          $name  = htmlspecialchars($p['name'],    ENT_QUOTES);
+          $price = number_format($p['price'], 2, ',', '.');
+          $img   = htmlspecialchars($p['image_url'],ENT_QUOTES);
+          $js    = addslashes($p['name']);
+        ?>
+          <!-- für jedes Produkt NUR eine product-card -->
+          <div class="product-card">
+            <div class="product-image-wrapper">
+              <img src="../Bilder/<?= $img ?>" alt="<?= $name ?>">
+            </div>
+            <h2><?= $name ?></h2>
+            <p><?= $price ?>€</p>
+            <button onclick="addToCart('<?= $js ?>', <?= $p['price'] ?>)">
+              In den Warenkorb
+            </button>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </main>
-
   <footer>
     <p>&copy; 2025 Fitness Shop</p>
   </footer>
 </body>
 </html>
+
+
+
