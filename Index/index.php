@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -17,12 +19,27 @@
 
   <header>
     <nav class="navbar">
+<<<<<<< Updated upstream
       <a href="#">Home</a>
       <a href="Nebenseiten/proteinpulver.html">Proteinpulver</a>
       <a href="Nebenseiten/vitalstoffe.html">Vitalstoffe</a>
       <a href="Nebenseiten/snacks-bars.html">Snacks & Bars</a>
       <a href="Nebenseiten/warenkorb.html">Warenkorb 🛒</a>
       <a href="Nebenseiten/login.php">Login</a>
+=======
+      <a href="index.php">Home</a>
+      <a href="Nebenseiten/proteinpulver.php">Proteinpulver</a>
+      <a href="Nebenseiten/vitalstoffe.php">Vitalstoffe</a>
+      <a href="Nebenseiten/snacks-bars.php">Snacks & Bars</a>
+      <a href="Nebenseiten/warenkorb.php">Warenkorb 🛒</a>
+      <?php if (isset($_SESSION['username'])): ?>
+        <a href="Nebenseiten/settings.php">Einstellungen</a>
+        <a href="Nebenseiten/logout.php">Logout</a>
+      <?php else: ?>
+        <a href="Nebenseiten/login.php">Login</a>
+      <?php endif; ?>
+      
+>>>>>>> Stashed changes
     </nav>
   </header>
 
