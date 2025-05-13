@@ -33,8 +33,16 @@ session_start();
       <a href="Nebenseiten/snacks-bars.php">Snacks & Bars</a>
       <a href="Nebenseiten/warenkorb.php">Warenkorb 🛒</a>
       <?php if (isset($_SESSION['username'])): ?>
+<<<<<<< Updated upstream
         <a href="Nebenseiten/settings.php">Einstellungen</a>
         <a href="Nebenseiten/logout.php">Logout</a>
+=======
+      <a href="Nebenseiten/settings.php">Einstellungen</a>
+      <?php if ($_SESSION['role'] === "admin"): ?>
+        <a href="Nebenseiten/admin.php">Adminbereich</a>
+      <?php endif; ?>
+      <a href="Nebenseiten/logout.php">Logout</a>
+>>>>>>> Stashed changes
       <?php else: ?>
         <a href="Nebenseiten/login.php">Login</a>
       <?php endif; ?>
