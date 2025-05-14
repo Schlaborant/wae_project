@@ -6,31 +6,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id, password_hash FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $stmt->store_result();
-    
-    if ($stmt->num_rows === 1) {
-        $stmt->bind_result($id, $hashed_password);
-        $stmt->fetch();
+    $stmt = $mysql->prepare("SELECT id, password_hash FROM users WHERE username = :username");
+    $stmt->execute([':username' => $username]);
 
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION['userid'] = $id;
-            $_SESSION['username'] = $username;
-            header("Location: welcome.php");
-            exit;
-        } else {
-            echo "Falsches Passwort.";
-        }
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password_hash'])) {
+        $_SESSION['userid'] = $user['id'];
+        $_SESSION['username'] = $username;
+        header("Location: ../index.php");
+        exit;
     } else {
-        echo "Benutzer nicht gefunden.";
+        echo "Benutzername oder Passwort falsch.";
     }
-
-    $stmt->close();
 }
 ?>
-
 
 <html lang="de">
 <head>
@@ -70,9 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit" class="btn btn-primary w-100 mb-2">Einloggen</button>
                 <div class="text-center">
                     <a href="passwort-vergessen.php" class="btn btn-link">Passwort vergessen?</a>
-                </div>
-                <div class="text-center">
-                    <a href="registrieren.php" class="btn btn-link">Registrieren</a>
                 </div>
             </form>
         </div>

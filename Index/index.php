@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -15,7 +17,12 @@
       <a href="Nebenseiten/vitalstoffe.php">Vitalstoffe</a>
       <a href="Nebenseiten/snacks-bars.php">Snacks & Bars</a>
       <a href="Nebenseiten/warenkorb.php">Warenkorb 🛒</a>
-      <a href="Nebenseiten/login.php">Login</a>
+      <?php if (isset($_SESSION['username'])): ?>
+      <a href="Nebenseiten/settings.php">Einstellungen</a>
+      <a href="Nebenseiten/logout.php">Logout</a>
+      <?php else: ?>
+        <a href="Nebenseiten/login.php">Login</a>
+      <?php endif; ?>
     </nav>
   </header>
 
