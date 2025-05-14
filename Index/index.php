@@ -32,21 +32,21 @@ session_start();
       
       <a href="Nebenseiten/proteinpulver.php" class="category-box">
         <div class="category-image-wrapper">
-          <img src="Bilder/perdbeere2.png" alt="Proteinpulver">
+          <img src="Bilder/Proteinpulver.png" alt="Proteinpulver">
         </div>
         <h2>Proteinpulver</h2>
       </a>
       
       <a href="Nebenseiten/vitalstoffe.php" class="category-box">
         <div class="category-image-wrapper">
-          <img src="Bilder/psand.png" alt="Vitalstoffe">
+          <img src="Bilder/Vitalstoffe.jpeg" alt="Vitalstoffe">
         </div>
         <h2>Vitalstoffe</h2>
       </a>
       
       <a href="Nebenseiten/snacks-bars.php" class="category-box">
         <div class="category-image-wrapper">
-          <img src="Bilder/pschoko.JPG" alt="Snacks & Bars">
+          <img src="Bilder/SnacksBars.png" alt="Snacks & Bars">
         </div>
         <h2>Snacks & Bars</h2>
       </a>
