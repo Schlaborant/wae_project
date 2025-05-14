@@ -1,3 +1,16 @@
+
+<?php
+include("../db.php");
+
+$stmt = $mysql->prepare("
+  SELECT name, price, image_url
+  FROM products 
+  WHERE category = ?");
+$stmt->execute(['Vitalstoffe']);
+$products = $stmt->fetchAll();
+?>
+
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -21,26 +34,32 @@
 
   <main>
     <h1>Vitalstoffe</h1>
+
     <div class="product-grid">
-      <div class="product-card">
-        <div class="product-image-wrapper">
-        <img src="../Bilder/perdbeere2.png" alt="Multivitamin">
-        </div>
-        <h2>Multivitamin</h2>
-        <p>14,99€</p>
-        <button onclick="addToCart('Multivitamin', 14.99)">In den Warenkorb</button>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrapper">
-        <img src="../Bilder/perdbeere2.png" alt="Omega 3">
-        </div>
-        <h2>Omega 3</h2>
-        <p>19,99€</p>
-        <button onclick="addToCart('Omega 3', 19.99)">In den Warenkorb</button>
-      </div>
+      <?php if (empty($products)): ?>
+        <p>Keine Produkte gefunden.</p>
+      <?php else: ?>
+        <?php foreach ($products as $p):
+          $name  = htmlspecialchars($p['name'],    ENT_QUOTES);
+          $price = number_format($p['price'], 2, ',', '.');
+          $img   = htmlspecialchars($p['image_url'],ENT_QUOTES);
+          $js    = addslashes($p['name']);
+        ?>
+          <!-- für jedes Produkt NUR eine product-card -->
+          <div class="product-card">
+            <div class="product-image-wrapper">
+              <img src="../Bilder/<?= $img ?>" alt="<?= $name ?>">
+            </div>
+            <h2><?= $name ?></h2>
+            <p><?= $price ?>€</p>
+            <button onclick="addToCart('<?= $js ?>', <?= $p['price'] ?>)">
+              In den Warenkorb
+            </button>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </main>
-
   <footer>
     <p>&copy; 2025 Fitness Shop</p>
   </footer>
