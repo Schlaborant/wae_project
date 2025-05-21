@@ -63,4 +63,37 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+
+  // Export-Button Funktionalität
+  const exportBtn = document.getElementById("export-json");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+          console.log("Export-Button wurde geklickt!"); // <-- Hier siehst du es in der Konsole
+
+
+      const orderData = {
+        items: cart,
+        total: cart.reduce((sum, item) => sum + item.price, 0)
+      };
+      const jsonStr = JSON.stringify(orderData, null, 2);
+
+      // Blob erstellen und Download-Link generieren
+      const blob = new Blob([jsonStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      // Temporären Link erzeugen und "klicken"
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "bestellung.json";
+      document.body.appendChild(a);
+      a.click();
+
+      // Aufräumen
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
 });
+
+

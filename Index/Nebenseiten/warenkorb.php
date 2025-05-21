@@ -20,6 +20,9 @@
     <h1>Dein Warenkorb</h1>
     <ul id="cart-items"></ul>
     <p id="cart-total">Gesamt: 0€</p>
+      <button id="export-json" class="btn"> 
+    Bestellung absenden & JSON herunterladen
+  </button>
   </main>
 
   <footer>
