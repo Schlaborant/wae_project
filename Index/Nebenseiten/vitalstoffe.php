@@ -1,7 +1,6 @@
-
 <?php
+session_start();
 include("../db.php");
-
 $stmt = $mysql->prepare("
   SELECT name, price, image_url
   FROM products 

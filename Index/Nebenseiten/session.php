@@ -3,7 +3,7 @@
 session_start();
 require '../db.php';
 
-$defaultTimeout = 1000;
+$defaultTimeout = 30;
 $userId = $_SESSION['userid'] ?? null;
 $timeout = $defaultTimeout;
 
