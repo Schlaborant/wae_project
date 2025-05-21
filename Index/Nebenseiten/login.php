@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
 
-    $stmt = $mysql->prepare("SELECT id, password_hash FROM users WHERE username = :username");
+    $stmt = $mysql->prepare("SELECT id, password_hash, `role` FROM users WHERE username = :username");
     $stmt->execute([':username' => $username]);
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password_hash'])) {
         $_SESSION['userid'] = $user['id'];
         $_SESSION['username'] = $username;
+        $_SESSION['role'] = $user['role'];
         header("Location: ../index.php");
         exit;
     } else {
@@ -27,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../css/test.css"/>
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -44,7 +46,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-
+    <header>
+    <nav class="navbar">
+      <a href="../index.php">Home</a>
+      <a href="proteinpulver.php">Proteinpulver</a>
+      <a href="vitalstoffe.php">Vitalstoffe</a>
+      <a href="snacks-bars.php">Snacks & Bars</a>
+      <a href="warenkorb.php">Warenkorb 🛒</a>
+      <?php if (isset($_SESSION['username'])): ?>
+      <a href="settings.php">Einstellungen</a>
+      <?php if ($_SESSION['role'] === "admin"): ?>
+        <a href="admin.php">Adminbereich</a>
+      <?php endif; ?>
+      <a href="logout.php">Logout</a>
+      <?php else: ?>
+        <a href="#">Login</a>
+      <?php endif; ?>
+    </nav>
+    </header>
     <div class="container">
         <div class="login-container">
             <h2 class="text-center mb-4">Login</h2>

@@ -19,6 +19,9 @@ session_start();
       <a href="Nebenseiten/warenkorb.php">Warenkorb 🛒</a>
       <?php if (isset($_SESSION['username'])): ?>
       <a href="Nebenseiten/settings.php">Einstellungen</a>
+      <?php if ($_SESSION['role'] === "admin"): ?>
+        <a href="Nebenseiten/admin.php">Adminbereich</a>
+      <?php endif; ?>
       <a href="Nebenseiten/logout.php">Logout</a>
       <?php else: ?>
         <a href="Nebenseiten/login.php">Login</a>

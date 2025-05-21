@@ -17,6 +17,7 @@ $products = $stmt->fetchAll();
   <title>Proteinpulver</title>
   <link rel="stylesheet" href="../css/styles.css"/>
   <script src="../javascript/script.js" defer></script>
+
 </head>
 <body>
   <header>
@@ -26,9 +27,17 @@ $products = $stmt->fetchAll();
       <a href="vitalstoffe.php">Vitalstoffe</a>
       <a href="snacks-bars.php">Snacks & Bars</a>
       <a href="warenkorb.php">Warenkorb 🛒</a>
-      <a href="login.php">Login</a>
+      <?php if (isset($_SESSION['username'])): ?>
+      <a href="settings.php">Einstellungen</a>
+      <?php if ($_SESSION['role'] === "admin"): ?>
+        <a href="admin.php">Adminbereich</a>
+      <?php endif; ?>
+      <a href="logout.php">Logout</a>
+      <?php else: ?>
+        <a href="login.php">Login</a>
+      <?php endif; ?>
     </nav>
-  </header>
+    </header>
 
   <main>
     <h1>Proteinpulver</h1>
