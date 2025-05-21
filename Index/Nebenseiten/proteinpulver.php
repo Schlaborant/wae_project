@@ -1,6 +1,6 @@
 <?php
+session_start();
 include("../db.php");
-
 $stmt = $mysql->prepare("
   SELECT name, price, image_url
   FROM products 
@@ -8,7 +8,6 @@ $stmt = $mysql->prepare("
 $stmt->execute(['proteinpulver']);
 $products = $stmt->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -17,7 +16,6 @@ $products = $stmt->fetchAll();
   <title>Proteinpulver</title>
   <link rel="stylesheet" href="../css/styles.css"/>
   <script src="../javascript/script.js" defer></script>
-
 </head>
 <body>
   <header>

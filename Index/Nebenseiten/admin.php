@@ -1,14 +1,43 @@
 <?php
-// IN BEARBEITUNG 
 require '../db.php';
 require 'session.php';
 
-if ($_SESSION['role'] !== "admin") {
-    header('Location: ../index.php');
-    exit;
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../index.php");
+    exit();
 }
 
+// Neuen Benutzer hinzufügen
+if (isset($_POST['add_user'])) {
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $role = $_POST['role'];
+    $timeout = 500;
 
+    $stmt = $mysql->prepare("INSERT INTO users (username, password_hash, role, timeout_seconds) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$username, $password, $role, $timeout]);
+}
+
+// Benutzer löschen
+if (isset($_POST['delete_user'])) {
+    $id = $_POST['user_id'];
+    $stmt = $mysql->prepare("DELETE FROM users WHERE id = ?");
+    $stmt->execute([$id]);
+}
+
+// Benutzer bearbeiten
+if (isset($_POST['edit_user'])) {
+    $id = $_POST['user_id'];
+    $role = $_POST['role'];
+    $timeout = 500;
+    $stmt = $mysql->prepare("UPDATE users SET `role` = ?, timeout_seconds = ? WHERE id = ?");
+    $stmt->execute([$role, $timeout, $id]);
+}
+
+// Benutzerliste abrufen
+$stmt = $mysql->prepare("SELECT id, username, `role`, timeout_seconds, created_at FROM users");
+$stmt->execute();
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);6
 ?>
 
 <!DOCTYPE html>
@@ -49,9 +78,6 @@ if ($_SESSION['role'] !== "admin") {
       <input type="text" class="form-control" name="username" placeholder="Benutzername" required>
     </div>
     <div class="col-md-4">
-      <input type="email" class="form-control" name="email" placeholder="E-Mail" required>
-    </div>
-    <div class="col-md-4">
       <input type="password" class="form-control" name="password" placeholder="Passwort" required>
     </div>
     <div class="col-md-2">
@@ -73,7 +99,6 @@ if ($_SESSION['role'] !== "admin") {
       <tr>
         <th>ID</th>
         <th>Benutzername</th>
-        <th>E-Mail</th>
         <th>Rolle</th>
         <th>Aktionen</th>
       </tr>
@@ -83,13 +108,13 @@ if ($_SESSION['role'] !== "admin") {
       <tr>
         <form method="post">
           <td><?= htmlspecialchars($user['id']) ?></td>
-          <td><input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" class="form-control"></td>
-          <td><input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" class="form-control"></td>
+          <td><?= htmlspecialchars($user['username']) ?></td>          
           <td>
             <select name="role" class="form-select">
               <option value="user" <?= $user['role'] === 'user' ? 'selected' : '' ?>>User</option>
               <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
             </select>
+            <input type="password" name="new_password" class="form-control" placeholder="Neues Passwort">
           </td>
           <td>
             <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
