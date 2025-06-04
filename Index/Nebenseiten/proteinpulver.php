@@ -63,7 +63,7 @@ $products = $stmt->fetchAll();
             <div class="product-image-wrapper">
               <img src="../Bilder/<?= $img ?>" alt="<?= $name ?>">
             </div>
-            <h2><?= $name ?></h2>
+            <h3><?= $name ?></h3>
             <p><?= $price ?>€</p>
             <button onclick="addToCart('<?= $js ?>', <?= $p['price'] ?>)">
               In den Warenkorb
