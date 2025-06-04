@@ -21,24 +21,31 @@ $products = $stmt->fetchAll();
   <script src="../javascript/script.js" defer></script>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
+<header>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="../index.php" class="logo">
+        <img src="../Bilder/logo5.png" alt="Logo">
+      </a>
+    </div>
+    <div class="nav-right">
       <a href="../index.php">Home</a>
       <a href="proteinpulver.php">Proteinpulver</a>
       <a href="vitalstoffe.php">Vitalstoffe</a>
       <a href="snacks-bars.php">Snacks & Bars</a>
       <a href="warenkorb.php">Warenkorb 🛒</a>
       <?php if (isset($_SESSION['username'])): ?>
-      <a href="settings.php">Einstellungen</a>
-      <?php if ($_SESSION['role'] === "admin"): ?>
-        <a href="admin.php">Adminbereich</a>
-      <?php endif; ?>
-      <a href="logout.php">Logout</a>
+        <a href="settings.php">Einstellungen</a>
+        <?php if ($_SESSION['role'] === "admin"): ?>
+          <a href="admin.php">Adminbereich</a>
+        <?php endif; ?>
+        <a href="logout.php">Logout</a>
       <?php else: ?>
         <a href="login.php">Login</a>
       <?php endif; ?>
-    </nav>
-    </header>
+    </div>
+  </nav>
+</header>
 
   <main>
     <h1>Snacks & Bars</h1>

@@ -67,22 +67,10 @@ session_start();
   <main class="products">
     <h2 class="section-heading">Unsere Produkte</h2>
 
-    <div class="product-entry">
-      <div class="slideshow-container">
-        <div class="mySlides fade">
-          <img src="Bilder/test4.png" style="width:100%">
-        </div>
-        <div class="mySlides fade">
-          <img src="Bilder/test5.png" style="width:100%">
-        </div>
-        <div class="mySlides fade">
-          <img src="Bilder/test6.png" style="width:100%">
-        </div>
 
-        <!-- Pfeile -->
-        <a class="prev" onclick="plusSlides(-1)"><</a>
-        <a class="next" onclick="plusSlides(1)">></a>
-      </div>
+
+    <div class="product-entry">
+      <img src="Bilder/test4.png" alt="Flooring">
       <div class="product-info">
         <h3>Proteinpulver</h3>
         <p><b>Starte jetzt durch – mit hochwertigem Proteinpulver für maximale Ergebnisse!</b><br>
@@ -91,6 +79,7 @@ session_start();
         <a href="#">Shop Online</a>
       </div>
     </div>
+
 
     <div class="product-entry reverse">
       <img src="Bilder/test5.png" alt="Features">
