@@ -25,12 +25,18 @@ function renderCartItems() {
 
   cart.forEach((item, index) => {
     const li = document.createElement("li");
+    li.classList.add("cart-item");
+
     li.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <span>${item.name} - ${item.price.toFixed(2)}€</span>
-        <button onclick="removeFromCart(${index})">🗑️</button>
+      <div class="cart-card">
+        <div class="cart-details">
+          <h3>${item.name}</h3>
+          <p>${item.price.toFixed(2)}€</p>
+        </div>
+        <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
       </div>
     `;
+
     cartItems.appendChild(li);
     total += item.price;
   });
@@ -97,29 +103,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-    function showSlides(n) {
-      if (!slides) slides = document.getElementsByClassName("slide");
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex = (n + slides.length) % slides.length;
-      slides[slideIndex].style.display = "block";
-    }
-
-    function plusSlides(n) {
-      clearInterval(slideTimer);
-      showSlides(slideIndex + n);
-      startAutoSlide();
-    }
-
-    function startAutoSlide() {
-      slideTimer = setInterval(() => {
-        showSlides(slideIndex + 1);
-      }, 4000);
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      slides = document.getElementsByClassName("slide");
-      showSlides(slideIndex);
-      startAutoSlide();
-    });

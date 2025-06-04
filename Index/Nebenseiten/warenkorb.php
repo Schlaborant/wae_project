@@ -37,7 +37,9 @@
   <main>
     <h1>Dein Warenkorb</h1>
     <ul id="cart-items"></ul>
-    <p id="cart-total">Gesamt: 0€</p>
+    <div class="cart-summary">
+  <p id="cart-total">Gesamt: 0€</p>
+</div>
       <button id="export-json" class="btn"> 
     Bestellung absenden & JSON herunterladen
   </button>
