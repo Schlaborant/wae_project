@@ -105,7 +105,7 @@ h1 {
 
 /* Produktkarte */
 .product-card {
-  background-color: rgba(202, 47, 47, 0.7);
+  background-color: rgba(60, 56, 56, 0.7);
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   overflow: hidden;
