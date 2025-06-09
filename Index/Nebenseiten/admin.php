@@ -2,6 +2,8 @@
 require '../db.php';
 require 'session.php';
 
+$notification = "";
+
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../index.php");
     exit();
@@ -14,24 +16,65 @@ if (isset($_POST['add_user'])) {
     $role = $_POST['role'];
     $timeout = 500;
 
-    $stmt = $mysql->prepare("INSERT INTO users (username, password_hash, role, timeout_seconds) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$username, $password, $role, $timeout]);
+    // Überprüfen, ob der Benutzername bereits existiert
+    $checkStmt = $mysql->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
+    $checkStmt->execute([$username]);
+    $userExists = $checkStmt->fetchColumn();
+
+    if ($userExists > 0) {
+        $notification = "<script>
+        document.getElementById('notification-area').innerHTML = `
+            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                Fehler: Der Benutzername existiert bereits.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>`;
+    </script>";
+    } else {
+        // Benutzer einfügen
+        $stmt = $mysql->prepare("INSERT INTO users (username, password_hash, role, timeout_seconds) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$username, $password, $role, $timeout]);
+        $notification = "<script>
+        document.getElementById('notification-area').innerHTML = `
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                Benutzer wurde erfolgreich hinzugefügt.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>`;
+      	</script>";
+    }
 }
 
 // Benutzer löschen
 if (isset($_POST['delete_user'])) {
     $id = $_POST['user_id'];
-    $stmt = $mysql->prepare("DELETE FROM users WHERE id = ?");
-    $stmt->execute([$id]);
+    if ($id == $_SESSION["userid"]) {
+      $notification = "
+    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        Du kannst dich nicht selbst löschen.
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>";
+    }
+    else {
+      $stmt = $mysql->prepare("DELETE FROM users WHERE id = ?");
+      $stmt->execute([$id]);
+      $notification = "
+    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        Benutzer wurde erfolgreich gelöscht.
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>";
+    }
 }
 
 // Benutzer bearbeiten
 if (isset($_POST['edit_user'])) {
     $id = $_POST['user_id'];
     $role = $_POST['role'];
-    $timeout = 500;
-    $stmt = $mysql->prepare("UPDATE users SET `role` = ?, timeout_seconds = ? WHERE id = ?");
-    $stmt->execute([$role, $timeout, $id]);
+    $stmt = $mysql->prepare("UPDATE users SET `role` = ? WHERE id = ?");
+    $stmt->execute([$role, $id]);
+    $notification = "
+<div class='alert alert-info alert-dismissible fade show' role='alert'>
+    Benutzerrolle wurde erfolgreich aktualisiert.
+    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
 }
 
 // Benutzerliste abrufen
@@ -45,8 +88,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);6
 <head>
   <meta charset="UTF-8">
   <title>Einstellungen</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/test.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">  <link rel="stylesheet" href="../css/test.css"/>
 </head>
 <body>
     <header>
@@ -67,6 +109,10 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);6
       <?php endif; ?>
     </nav>
     </header>
+
+  <div id="notification-area">
+    <?= $notification ?>
+  </div>
 
 <main class="container mt-5">
   <h1>Benutzerverwaltung</h1>
@@ -127,6 +173,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);6
     </tbody>
   </table>
 </main>
-
-</body>
+<!-- Bootstrap JS (für eventuelle Erweiterungen wie dismissible alerts) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script></body>
 </html>
