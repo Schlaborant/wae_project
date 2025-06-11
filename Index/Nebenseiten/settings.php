@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['timeout'])) {
         $newTimeout = (int)$_POST['timeout'];
         if ($newTimeout >= 10 && $newTimeout <= 3600) {
-            $stmt = $mysql->prepare("UPDATE users SET timeout_seconds = :timeout WHERE id = :id");
+            $stmt = $mysql->prepare("UPDATE users SET timeout_minutes = :timeout WHERE id = :id");
             $stmt->execute([':timeout' => $newTimeout, ':id' => $userId]);
             $success = "Timeout erfolgreich gespeichert.";
         } else {
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // aktuellen Timeout aus DB laden
-$stmt = $mysql->prepare("SELECT timeout_seconds FROM users WHERE id = :id");
+$stmt = $mysql->prepare("SELECT timeout_minutes FROM users WHERE id = :id");
 $stmt->execute([':id' => $userId]);
 $currentTimeout = $stmt->fetchColumn() ?? 100;
 ?>
@@ -96,7 +96,7 @@ $currentTimeout = $stmt->fetchColumn() ?? 100;
   <form method="post" class="mb-4">
     <h5>🕒 Automatischer Logout (Timeout)</h5>
     <div class="mb-3">
-      <label for="timeout" class="form-label">Inaktivitätszeit (Sekunden)</label>
+      <label for="timeout" class="form-label">Inaktivitätszeit (Minuten)</label>
       <input type="number" class="form-control" id="timeout" name="timeout" value="<?= htmlspecialchars($currentTimeout) ?>" min="10" max="3600" required>
     </div>
     <button type="submit" class="btn btn-primary">Speichern</button>

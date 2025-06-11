@@ -2,18 +2,28 @@
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Neue Funktion: Export-Button ein-/ausblenden
+function toggleExportButton() {
+  const exportBtn = document.getElementById("export-json");
+  if (!exportBtn) return;
+  if (cart.length > 0) {
+    exportBtn.style.display = ""; // CSS-Default anzeigen
+  } else {
+    exportBtn.style.display = "none"; // ausblenden, wenn leer
+  }
+}
+
 // 1. Cart-Count anpassen (zeigt jetzt Summe aller Mengen)
 function updateCartCount() {
   const countElement = document.getElementById("cart-count");
   if (!countElement) return;
-  // statt cart.length: Gesamtanzahl aller Items (z.B. 3× Proteinpulver + 2× Riegel = 5)
+  // statt cart.length: Gesamtanzahl aller Items
   const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
   countElement.textContent = totalQty;
 }
 
-// 2. Beim Hinzufügen immer mit quantity: 1 anlegen (bisher wurde nur name & price gespeichert)
+// 2. Beim Hinzufügen immer mit quantity: 1 anlegen
 function addToCart(name, price) {
-  // Du könntest hier auch prüfen, ob das Produkt schon vorhanden ist und dann nur quantity++
   cart.push({ name, price, quantity: 1 });
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartCount();
@@ -29,8 +39,17 @@ function renderCartItems() {
   cartItems.innerHTML = "";
   let total = 0;
 
+  if (cart.length === 0) {
+    const emptyMsg = document.createElement("p");
+    emptyMsg.textContent = "Dein Warenkorb ist leer.";
+    emptyMsg.style.margin = "1rem";
+    cartItems.appendChild(emptyMsg);
+    cartTotal.textContent = "Gesamt: 0,00€";
+    toggleExportButton();
+    return;
+  }
+
   cart.forEach((item, index) => {
-    // Für jedes Item wird ein <li> erstellt, das name, preis, Menge-Controls und Gesamt-Preis anzeigt
     const li = document.createElement("li");
     li.classList.add("cart-item");
 
@@ -39,22 +58,21 @@ function renderCartItems() {
         <div class="cart-details">
           <h3>${item.name}</h3>
           <p>Einzelpreis: ${item.price.toFixed(2)}€</p>
-
-          <div class="quantity-control">
-            <button class="decrease-btn" onclick="decreaseQuantity(${index})">−</button>
-            <input 
-              type="number" 
-              class="quantity-input" 
-              value="${item.quantity}" 
-              min="1" 
-              onchange="changeQuantity(${index}, this.value)"
-            >
-            <button class="increase-btn" onclick="increaseQuantity(${index})">+</button>
+          <div>
+            <p>Anzahl: 
+              <input 
+                style="color:white; width: 100px; background-color: rgba(255, 255, 255, 0); border: none; border: 1px solid; border-radius: 5px; padding: 5px;"
+                type="number" 
+                class="quantity-input" 
+                value="${item.quantity}"
+                step="1"	 
+                min="1" 
+                max="10"
+                onchange="changeQuantity(${index}, this.value)"
+              >
+            </p>
           </div>
-
-          <p>Artikel gesamt: ${(item.price * item.quantity).toFixed(2)}€</p>
         </div>
-
         <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
       </div>
     `;
@@ -64,6 +82,7 @@ function renderCartItems() {
   });
 
   cartTotal.textContent = `Gesamt: ${total.toFixed(2)}€`;
+  toggleExportButton();
 }
 
 // 4. Menge erhöhen
@@ -106,7 +125,7 @@ function removeFromCart(index) {
 
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
-  renderCartItems();
+  renderCartItems(); // ruft toggleExportButton() intern auf
 
   // Falls du dein Login‐Formular weiterhin hier abwickelst:
   const loginForm = document.querySelector(".login-form");
@@ -127,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 8. Export-Button
   const exportBtn = document.getElementById("export-json");
   if (exportBtn) {
+    // Initial: toggleExportButton wurde in renderCartItems() bereits aufgerufen
     exportBtn.addEventListener("click", () => {
       console.log("Export-Button wurde geklickt!");
 
