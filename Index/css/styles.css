@@ -210,7 +210,7 @@ footer {
 }
 
 .cart-card:hover {
-  transform: scale(1.01);
+  transform: none !important;
 }
 
 .cart-details h3 {

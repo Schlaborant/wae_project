@@ -31,7 +31,7 @@ if (isset($_POST['add_user'])) {
     </script>";
     } else {
         // Benutzer einfügen
-        $stmt = $mysql->prepare("INSERT INTO users (username, password_hash, role, timeout_seconds) VALUES (?, ?, ?, ?)");
+        $stmt = $mysql->prepare("INSERT INTO users (username, password_hash, role, timeout_minutes) VALUES (?, ?, ?, ?)");
         $stmt->execute([$username, $password, $role, $timeout]);
         $notification = "<script>
         document.getElementById('notification-area').innerHTML = `
@@ -78,7 +78,7 @@ if (isset($_POST['edit_user'])) {
 }
 
 // Benutzerliste abrufen
-$stmt = $mysql->prepare("SELECT id, username, `role`, timeout_seconds, created_at FROM users");
+$stmt = $mysql->prepare("SELECT id, username, `role`, timeout_minutes, created_at FROM users");
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);6
 ?>
