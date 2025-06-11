@@ -28,42 +28,95 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/test.css"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .login-container {
-            max-width: 400px;
-            margin: 80px auto;
-            padding: 30px;
-            border-radius: 15px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+       .login-container {
+    max-width: 420px;
+    margin: 100px auto;
+    padding: 40px 30px;
+    border-radius: 16px;
+    background-color: rgba(60, 56, 56, 0.85);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    color: #f0e6d2;
+}
+
+
+
+.login-container h2 {
+    color: #e8d8b4;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+}
+
+.login-container .form-label {
+    color: #e8d8b4;
+    font-weight: bold;
+}
+
+.login-container .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #a98258;
+    color: #f0e6d2;
+}
+
+.login-container .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #e8d8b4;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #a98258;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #8a6c4b;
+    transform: scale(1.03);
+}
+
+.btn-link {
+    color: #e8d8b4;
+    text-decoration: underline;
+}
+
+.btn-link:hover {
+    color: #fff;
+}
     </style>
 </head>
-<body>
-    <header>
-    <nav class="navbar">
+<body class="login-page">
+<header>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a class="logo" href="../index.php">
+        <img src="../Bilder/logo5.png" alt="Logo">
+      </a>
+    </div>
+    <div class="nav-right">
       <a href="../index.php">Home</a>
       <a href="proteinpulver.php">Proteinpulver</a>
       <a href="vitalstoffe.php">Vitalstoffe</a>
       <a href="snacks-bars.php">Snacks & Bars</a>
       <a href="warenkorb.php">Warenkorb 🛒</a>
       <?php if (isset($_SESSION['username'])): ?>
-      <a href="settings.php">Einstellungen</a>
-      <?php if ($_SESSION['role'] === "admin"): ?>
-        <a href="admin.php">Adminbereich</a>
-      <?php endif; ?>
-      <a href="logout.php">Logout</a>
+        <a href="settings.php">Einstellungen</a>
+        <?php if ($_SESSION['role'] === "admin"): ?>
+          <a href="admin.php">Adminbereich</a>
+        <?php endif; ?>
+        <a href="logout.php">Logout</a>
       <?php else: ?>
-        <a href="#">Login</a>
+        <a href="login.php">Login</a>
       <?php endif; ?>
-    </nav>
-    </header>
+    </div>
+  </nav>
+</header>
+
+
     <div class="container">
         <div class="login-container">
             <h2 class="text-center mb-4">Login</h2>
