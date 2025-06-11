@@ -127,22 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
   renderCartItems(); // ruft toggleExportButton() intern auf
 
-  // Falls du dein Login‐Formular weiterhin hier abwickelst:
-  const loginForm = document.querySelector(".login-form");
-  if (loginForm) {
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      if (email && password) {
-        alert("Login erfolgreich! ✨");
-        loginForm.reset();
-      } else {
-        alert("Bitte fülle alle Felder aus.");
-      }
-    });
-  }
-
   // 8. Export-Button
   const exportBtn = document.getElementById("export-json");
   if (exportBtn) {
@@ -166,6 +150,16 @@ document.addEventListener("DOMContentLoaded", () => {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      clearCart();
     });
   }
 });
+
+// 9. Warenkorb leeren
+function clearCart() {
+  cart = [];  // Array leeren
+  localStorage.removeItem("cart"); // oder: localStorage.setItem("cart", JSON.stringify(cart));
+  // UI aktualisieren
+  updateCartCount();
+  renderCartItems();
+}
