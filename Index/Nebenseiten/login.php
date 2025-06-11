@@ -25,21 +25,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../css/styles.css"/>
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- 1. Bootstrap laden -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 2. Deine Styles danach -->
+  <link rel="stylesheet" href="../css/styles.css"/>
     <style>
        .login-container {
     max-width: 420px;
-    margin: 100px auto;
-    padding: 40px 30px;
-    border-radius: 16px;
-    background-color: rgba(60, 56, 56, 0.85);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-    color: #f0e6d2;
+      margin: 100px auto;
+      padding: 40px 30px;
+      border-radius: 16px;
+      background-color: rgba(20, 20, 20, 0.95);
+      box-shadow: 0 8px 32px rgba(154, 125, 81, 0.7);
+      color: #f0e6d2;
 }
 
 
@@ -56,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 .login-container .form-control {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #1f1e1e;
     border: 1px solid #a98258;
     color: #f0e6d2;
 }
@@ -87,6 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 .btn-link:hover {
     color: #fff;
 }
+
+
     </style>
 </head>
 <body class="login-page">
@@ -94,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <nav class="navbar">
     <div class="nav-left">
       <a class="logo" href="../index.php">
-        <img src="../Bilder/logo5.png" alt="Logo">
+        <img src="../Bilder/logo5.png" alt="Logo" />
       </a>
     </div>
     <div class="nav-right">
@@ -104,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <a href="snacks-bars.php">Snacks & Bars</a>
       <a href="warenkorb.php">Warenkorb 🛒</a>
       <?php if (isset($_SESSION['username'])): ?>
-        <a href="settings.php">Einstellungen</a>
+        <a href="Nebenseiten/settings.php">Einstellungen</a>
         <?php if ($_SESSION['role'] === "admin"): ?>
           <a href="admin.php">Adminbereich</a>
         <?php endif; ?>
@@ -115,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </nav>
 </header>
+
 
 
     <div class="container">
@@ -130,9 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100 mb-2">Einloggen</button>
-                <div class="text-center">
-                    <a href="passwort-vergessen.php" class="btn btn-link">Passwort vergessen?</a>
-                </div>
+                
             </form>
         </div>
     </div>

@@ -76,7 +76,7 @@ session_start();
         <p><b>Starte jetzt durch – mit hochwertigem Proteinpulver für maximale Ergebnisse!</b><br>
         Du willst Muskeln aufbauen, deine Regeneration verbessern oder einfach deine Eiweißzufuhr 
         gezielt unterstützen? Unser Premium-Proteinpulver bietet dir genau das, was du brauchst!</p>
-        <a href="#">Shop Online</a>
+        <a href="Nebenseiten/proteinpulver.php">Shop Online</a>
       </div>
     </div>
 
@@ -88,7 +88,7 @@ session_start();
         <p><b>Bring deinen Körper in Balance – mit hochwertigen Vitalstoffen für mehr Energie und Wohlbefinden!</b><br>
         Egal ob du dein Immunsystem stärken, Müdigkeit bekämpfen oder deine Ernährung gezielt ergänzen möchtest – unsere Premium-Vitalstoffprodukte 
         unterstützen dich dabei, dich rundum vital und leistungsfähig zu fühlen!</p>
-        <a href="#">Shop Online</a>
+        <a href="Nebenseiten/vitalstoffe.php">Shop Online</a>
       </div>
     </div>
 
@@ -98,7 +98,7 @@ session_start();
         <h3>Snack & Bars</h3>
         <p><b>Snacken mit gutem Gewissen – unsere Proteinriegel liefern dir Power für unterwegs!</b><br>
         Ob nach dem Training, im Büro oder zwischendurch – unsere leckeren Proteinriegel versorgen dich mit hochwertigem Eiweiß, sättigen langanhaltend und schmecken einfach fantastisch. Perfekt für alle, die bewusst snacken wollen!</p>
-        <a href="#">Shop Online</a>
+        <a href="Nebenseiten/snacks-bars.php">Shop Online</a>
       </div>
     </div>
   </main>

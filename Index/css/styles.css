@@ -33,6 +33,7 @@ header {
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  
 }
 
 .nav-left {
@@ -95,6 +96,9 @@ h1 {
   color: #e8d8b4;
   letter-spacing: 1px;
 }
+
+
+
 
 /* Produkt-Gitter */
 .product-grid {
@@ -263,17 +267,17 @@ footer {
 
 
 body.login-page {
-  background-color: #873030; /* Fallback falls Bild nicht lädt */
+  background-color: #1f1e1e; /* Fallback falls Bild nicht lädt */
   background-image: url('../Bilder/login-hintergrund.jpg'); /* ← Hier DEIN gewünschtes Bild einsetzen */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
-body.login-page header {
-  background-color: rgba(0, 0, 0, 0.95); /* dunkler & konsistenter mit Seitenhintergrund */
+/*body.login-page header {
+  background-color: rgba(0, 0, 0, 0.95); /* dunkler & konsistenter mit Seitenhintergrund 
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
-}
+}*/
 
 
 /* Responsive Design */
