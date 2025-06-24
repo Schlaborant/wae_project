@@ -28,9 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <!-- 1. Bootstrap laden -->
+  <!-- Bootstrap laden -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- 2. Deine Styles danach -->
   <link rel="stylesheet" href="../css/styles.css"/>
     <style>
        .login-container {
@@ -42,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       box-shadow: 0 8px 32px rgba(154, 125, 81, 0.7);
       color: #f0e6d2;
 }
-
 
 
 .login-container h2 {
@@ -139,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <!-- Bootstrap JS (optional) -->
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../javascript/login.js" defer></script>
 </body>

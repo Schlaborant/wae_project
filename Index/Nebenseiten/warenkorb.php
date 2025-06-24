@@ -1,5 +1,6 @@
 <?php 
 require "session.php";
+$isLoggedIn = isset($_SESSION['username']);
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -36,7 +37,7 @@ require "session.php";
     </div>
   </nav>
 </header>
-
+<span id="user-status" data-loggedin="<?= $isLoggedIn ? 'true' : 'false' ?>" style="display: none;"></span>
   <main>
     <h1>Dein Warenkorb</h1>
     <ul id="cart-items"></ul>

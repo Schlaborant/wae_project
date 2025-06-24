@@ -2,7 +2,7 @@
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Neue Funktion: Export-Button ein-/ausblenden
+//Export-Button ein-/ausblenden
 function toggleExportButton() {
   const exportBtn = document.getElementById("export-json");
   if (!exportBtn) return;
@@ -13,7 +13,7 @@ function toggleExportButton() {
   }
 }
 
-// 1. Cart-Count anpassen (zeigt jetzt Summe aller Mengen)
+//Cart-Count anpassen
 function updateCartCount() {
   const countElement = document.getElementById("cart-count");
   if (!countElement) return;
@@ -22,7 +22,7 @@ function updateCartCount() {
   countElement.textContent = totalQty;
 }
 
-// 2. Beim Hinzufügen immer mit quantity: 1 anlegen
+// Beim Hinzufügen immer mit quantity: 1 anlegen
 function addToCart(name, price) {
   cart.push({ name, price, quantity: 1 });
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -30,7 +30,7 @@ function addToCart(name, price) {
   alert(`${name} wurde dem Warenkorb hinzugefügt! 🛒`);
 }
 
-// 3. Render-Funktion für den Warenkorb inkl. Mengensteuerung
+// Render-Funktion für den Warenkorb inkl. Mengensteuerung
 function renderCartItems() {
   const cartItems = document.getElementById("cart-items");
   const cartTotal = document.getElementById("cart-total");
@@ -85,7 +85,7 @@ function renderCartItems() {
   toggleExportButton();
 }
 
-// 4. Menge erhöhen
+// Menge erhöhen
 function increaseQuantity(index) {
   cart[index].quantity += 1;
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -93,7 +93,7 @@ function increaseQuantity(index) {
   updateCartCount();
 }
 
-// 5. Menge verringern (mindestens 1)
+// Menge verringern (mindestens 1)
 function decreaseQuantity(index) {
   if (cart[index].quantity > 1) {
     cart[index].quantity -= 1;
@@ -103,7 +103,7 @@ function decreaseQuantity(index) {
   }
 }
 
-// 6. Menge direkt im Input-Feld ändern
+// Menge direkt im Input-Feld ändern
 function changeQuantity(index, newValue) {
   let qty = parseInt(newValue);
   if (isNaN(qty) || qty < 1) {
@@ -115,7 +115,7 @@ function changeQuantity(index, newValue) {
   updateCartCount();
 }
 
-// 7. Item komplett entfernen
+// Item komplett entfernen
 function removeFromCart(index) {
   cart.splice(index, 1);
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -127,38 +127,45 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
   renderCartItems(); // ruft toggleExportButton() intern auf
 
-  // 8. Export-Button
-  const exportBtn = document.getElementById("export-json");
-  if (exportBtn) {
-    // Initial: toggleExportButton wurde in renderCartItems() bereits aufgerufen
-    exportBtn.addEventListener("click", () => {
-      console.log("Export-Button wurde geklickt!");
+  //Export-Button
+const exportBtn = document.getElementById("export-json");
+if (exportBtn) {
+  exportBtn.addEventListener("click", () => {
+    const statusEl = document.getElementById("user-status");
+    const isLoggedIn = statusEl?.dataset.loggedin === "true";
 
-      const orderData = {
-        items: cart,
-        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
-      };
-      const jsonStr = JSON.stringify(orderData, null, 2);
+    if (!isLoggedIn) {
+      alert("❗Du musst eingeloggt sein, um eine Bestellung abzusenden.");
+      return;
+    }
 
-      // Blob erzeugen & Download starten
-      const blob = new Blob([jsonStr], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "bestellung.json";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      clearCart();
+    console.log("Export-Button wurde geklickt!");
+
+    const orderData = {
+      items: cart,
+      total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    };
+    const jsonStr = JSON.stringify(orderData, null, 2);
+
+    const blob = new Blob([jsonStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "bestellung.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    clearCart();
     });
   }
 });
 
-// 9. Warenkorb leeren
+//Warenkorb leeren
 function clearCart() {
   cart = [];  // Array leeren
-  localStorage.removeItem("cart"); // oder: localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.removeItem("cart");
   // UI aktualisieren
   updateCartCount();
   renderCartItems();

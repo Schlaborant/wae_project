@@ -67,8 +67,6 @@ session_start();
   <main class="products">
     <h2 class="section-heading">Unsere Produkte</h2>
 
-
-
     <div class="product-entry">
       <img src="Bilder/test4.png" alt="Flooring">
       <div class="product-info">
@@ -79,7 +77,6 @@ session_start();
         <a href="Nebenseiten/proteinpulver.php">Shop Online</a>
       </div>
     </div>
-
 
     <div class="product-entry reverse">
       <img src="Bilder/test5.png" alt="Features">
