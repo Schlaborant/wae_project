@@ -58,7 +58,7 @@ $currentTimeout = $stmt->fetchColumn() ?? 100;
   <meta charset="UTF-8">
   <title>Einstellungen</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/test.css"/>
+  <link rel="stylesheet" href="../css/settings.css"/>
   <style>
     body { background-color: #f8f9fa; }
     .container { max-width: 600px; margin-top: 50px; }

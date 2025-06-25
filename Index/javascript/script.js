@@ -1,36 +1,71 @@
-// script.js
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-//Export-Button ein-/ausblenden
+// Export-Button ein-/ausblenden
 function toggleExportButton() {
   const exportBtn = document.getElementById("export-json");
-  if (!exportBtn) return;
-  if (cart.length > 0) {
-    exportBtn.style.display = ""; // CSS-Default anzeigen
-  } else {
-    exportBtn.style.display = "none"; // ausblenden, wenn leer
+  if (exportBtn) {
+    exportBtn.style.display = cart.length > 0 ? "" : "none";
   }
 }
 
-//Cart-Count anpassen
+// Cart-Zähler aktualisieren
 function updateCartCount() {
   const countElement = document.getElementById("cart-count");
   if (!countElement) return;
-  // statt cart.length: Gesamtanzahl aller Items
   const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
   countElement.textContent = totalQty;
 }
 
-// Beim Hinzufügen immer mit quantity: 1 anlegen
+// Artikel hinzufügen
 function addToCart(name, price) {
   cart.push({ name, price, quantity: 1 });
   localStorage.setItem("cart", JSON.stringify(cart));
+  syncCartToServer();
   updateCartCount();
-  alert(`${name} wurde dem Warenkorb hinzugefügt! 🛒`);
+  alert(`${name} wurde dem Warenkorb hinzugefügt!`);
 }
 
-// Render-Funktion für den Warenkorb inkl. Mengensteuerung
+// Artikel entfernen
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  syncCartToServer();
+  renderCartItems();
+  updateCartCount();
+}
+
+// Menge direkt ändern
+function changeQuantity(index, newValue) {
+  let qty = parseInt(newValue);
+  if (isNaN(qty) || qty < 1) qty = 1;
+  cart[index].quantity = qty;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  syncCartToServer();
+  renderCartItems();
+  updateCartCount();
+}
+
+// Menge erhöhen
+function increaseQuantity(index) {
+  cart[index].quantity += 1;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  syncCartToServer();
+  renderCartItems();
+  updateCartCount();
+}
+
+// Menge verringern
+function decreaseQuantity(index) {
+  if (cart[index].quantity > 1) {
+    cart[index].quantity -= 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    syncCartToServer();
+    renderCartItems();
+    updateCartCount();
+  }
+}
+
+// Warenkorb anzeigen
 function renderCartItems() {
   const cartItems = document.getElementById("cart-items");
   const cartTotal = document.getElementById("cart-total");
@@ -61,22 +96,18 @@ function renderCartItems() {
           <div>
             <p>Anzahl: 
               <input 
-                style="color:white; width: 100px; background-color: rgba(255, 255, 255, 0); border: none; border: 1px solid; border-radius: 5px; padding: 5px;"
-                type="number" 
-                class="quantity-input" 
+                type="number"
                 value="${item.quantity}"
-                step="1"	 
-                min="1" 
+                min="1"
                 max="10"
                 onchange="changeQuantity(${index}, this.value)"
               >
             </p>
           </div>
         </div>
-        <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
+        <button onclick="removeFromCart(${index})">🗑️</button>
       </div>
     `;
-
     cartItems.appendChild(li);
     total += item.price * item.quantity;
   });
@@ -85,88 +116,68 @@ function renderCartItems() {
   toggleExportButton();
 }
 
-// Menge erhöhen
-function increaseQuantity(index) {
-  cart[index].quantity += 1;
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCartItems();
+// AJAX: Warenkorb vom Server laden
+function loadCartFromServer() {
+  fetch("get-cart.php")
+    .then(res => res.json())
+    .then(data => {
+      cart = data;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCartItems();
+      updateCartCount();
+    })
+    .catch(err => console.error("Fehler beim Laden:", err));
+}
+
+// AJAX: Warenkorb zum Server senden
+function syncCartToServer() {
+  fetch("update-cart.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cart: cart })
+  });
+}
+
+// Warenkorb leeren
+function clearCart() {
+  cart = [];
+  localStorage.removeItem("cart");
+  syncCartToServer();
   updateCartCount();
-}
-
-// Menge verringern (mindestens 1)
-function decreaseQuantity(index) {
-  if (cart[index].quantity > 1) {
-    cart[index].quantity -= 1;
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderCartItems();
-    updateCartCount();
-  }
-}
-
-// Menge direkt im Input-Feld ändern
-function changeQuantity(index, newValue) {
-  let qty = parseInt(newValue);
-  if (isNaN(qty) || qty < 1) {
-    qty = 1;
-  }
-  cart[index].quantity = qty;
-  localStorage.setItem("cart", JSON.stringify(cart));
   renderCartItems();
-  updateCartCount();
 }
 
-// Item komplett entfernen
-function removeFromCart(index) {
-  cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCartItems();
-  updateCartCount();
-}
-
+// Export-Logik
 document.addEventListener("DOMContentLoaded", () => {
-  updateCartCount();
-  renderCartItems(); // ruft toggleExportButton() intern auf
+  loadCartFromServer();
 
-  //Export-Button
-const exportBtn = document.getElementById("export-json");
-if (exportBtn) {
-  exportBtn.addEventListener("click", () => {
-    const statusEl = document.getElementById("user-status");
-    const isLoggedIn = statusEl?.dataset.loggedin === "true";
+  const exportBtn = document.getElementById("export-json");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+      const statusEl = document.getElementById("user-status");
+      const isLoggedIn = statusEl?.dataset.loggedin === "true";
 
-    if (!isLoggedIn) {
-      alert("❗Du musst eingeloggt sein, um eine Bestellung abzusenden.");
-      return;
-    }
+      if (!isLoggedIn) {
+        alert("❗ Du musst eingeloggt sein um zu Bestellen");
+        return;
+      }
 
-    console.log("Export-Button wurde geklickt!");
+      const orderData = {
+        items: cart,
+        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+      };
 
-    const orderData = {
-      items: cart,
-      total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
-    };
-    const jsonStr = JSON.stringify(orderData, null, 2);
+      const blob = new Blob([JSON.stringify(orderData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "bestellung.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
 
-    const blob = new Blob([jsonStr], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "bestellung.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    clearCart();
+      clearCart();
     });
   }
 });
-
-//Warenkorb leeren
-function clearCart() {
-  cart = [];  // Array leeren
-  localStorage.removeItem("cart");
-  // UI aktualisieren
-  updateCartCount();
-  renderCartItems();
-}

@@ -12,7 +12,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url('../Bilder/Holzhintergrund.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -267,18 +266,11 @@ footer {
 
 
 body.login-page {
-  background-color: #1f1e1e; /* Fallback falls Bild nicht lädt */
-  background-image: url('../Bilder/login-hintergrund.jpg'); /* ← Hier DEIN gewünschtes Bild einsetzen */
+  background-color: #1f1e1e; 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
-
-/*body.login-page header {
-  background-color: rgba(0, 0, 0, 0.95); /* dunkler & konsistenter mit Seitenhintergrund 
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
-}*/
-
 
 /* Responsive Design */
 @media (max-width: 768px) {

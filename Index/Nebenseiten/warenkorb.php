@@ -1,5 +1,5 @@
 <?php 
-require "session.php";
+require "session.php"; // startet die Session
 $isLoggedIn = isset($_SESSION['username']);
 ?>
 <!DOCTYPE html>
@@ -12,11 +12,12 @@ $isLoggedIn = isset($_SESSION['username']);
   <script src="../javascript/script.js" defer></script>
 </head>
 <body>
+
 <header>
   <nav class="navbar">
     <div class="nav-left">
       <a href="../index.php" class="logo">
-        <img src="../Bilder/logo5.png" alt="Logo">
+        <img src="../Bilder/logo5.png" alt="Logo" />
       </a>
     </div>
     <div class="nav-right">
@@ -25,7 +26,7 @@ $isLoggedIn = isset($_SESSION['username']);
       <a href="vitalstoffe.php">Vitalstoffe</a>
       <a href="snacks-bars.php">Snacks & Bars</a>
       <a href="warenkorb.php">Warenkorb 🛒</a>
-      <?php if (isset($_SESSION['username'])): ?>
+      <?php if ($isLoggedIn): ?>
         <a href="settings.php">Einstellungen</a>
         <?php if ($_SESSION['role'] === "admin"): ?>
           <a href="admin.php">Adminbereich</a>
@@ -37,20 +38,24 @@ $isLoggedIn = isset($_SESSION['username']);
     </div>
   </nav>
 </header>
+
+<!-- Login-Status für JavaScript -->
 <span id="user-status" data-loggedin="<?= $isLoggedIn ? 'true' : 'false' ?>" style="display: none;"></span>
-  <main>
-    <h1>Dein Warenkorb</h1>
-    <ul id="cart-items"></ul>
-    <div class="cart-summary">
-  <p id="cart-total">Gesamt: 0€</p>
-</div>
-      <button id="export-json" class="btn"> 
+
+<main>
+  <h1>Dein Warenkorb</h1>
+  <ul id="cart-items"></ul>
+  <div class="cart-summary">
+    <p id="cart-total">Gesamt: 0,00€</p>
+  </div>
+  <button id="export-json" class="btn">
     Bestellung absenden & JSON herunterladen
   </button>
-  </main>
+</main>
 
-  <footer>
-    <p>&copy; 2025 Fitness Shop</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 Fitness Shop</p>
+</footer>
+
 </body>
 </html>
