@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const orderData = {
         items: cart,
-        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+        total: Number(cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2))
       };
 
       const blob = new Blob([JSON.stringify(orderData, null, 2)], { type: "application/json" });
