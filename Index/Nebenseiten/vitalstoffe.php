@@ -9,13 +9,13 @@ $stmt->execute(['Vitalstoffe']);
 $products = $stmt->fetchAll();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vitalstoffe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css"/>
   <script src="../javascript/script.js" defer></script>
 </head>
@@ -45,10 +45,8 @@ $products = $stmt->fetchAll();
     </div>
   </nav>
 </header>
-
   <main>
     <h1>Vitalstoffe</h1>
-
     <div class="product-grid">
       <?php if (empty($products)): ?>
         <p>Keine Produkte gefunden.</p>
@@ -73,6 +71,13 @@ $products = $stmt->fetchAll();
         <?php endforeach; ?>
       <?php endif; ?>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Alert oben mittig -->
+    <div id="cart-alert" class="alert custom-alert alert-dismissible fade show" role="alert" style="display: none;">
+      <span id="cart-alert-message" class="small"></span>
+      <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
   </main>
   <footer>
     <p>&copy; 2025 Fitness Shop</p>

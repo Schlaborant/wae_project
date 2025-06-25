@@ -18,11 +18,30 @@ function updateCartCount() {
 
 // Artikel hinzufügen
 function addToCart(name, price) {
-  cart.push({ name, price, quantity: 1 });
+  const index = cart.findIndex(item => item.name === name);
+
+  if (index !== -1) {
+    cart[index].quantity += 1;
+  } else {
+    cart.push({ name, price, quantity: 1 });
+  }
+
   localStorage.setItem("cart", JSON.stringify(cart));
-  syncCartToServer();
-  updateCartCount();
-  alert(`${name} wurde dem Warenkorb hinzugefügt!`);
+
+  updateCartCount?.();
+  syncCartToServer?.();
+
+  // Bootstrap Alert anzeigen
+  const alertBox = document.getElementById("cart-alert");
+  const alertMessage = document.getElementById("cart-alert-message");
+  alertMessage.textContent = `${name} wurde dem Warenkorb hinzugefügt!`;
+  alertBox.style.display = "block";
+  alertBox.classList.add("show");
+
+  setTimeout(() => {
+    const alertInstance = bootstrap.Alert.getOrCreateInstance(alertBox);
+    alertInstance.close();
+  }, 3000);
 }
 
 // Artikel entfernen
