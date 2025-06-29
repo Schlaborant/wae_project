@@ -1,459 +1,420 @@
-/* Reset */
+/* Reset aller Elemente auf Standardwerte */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Außenabstand entfernen */
+  padding: 0; /* Innenabstand entfernen */
+  box-sizing: border-box; /* Padding & Border werden zur Gesamtbreite gezählt */
 }
 
+/* Body-Grundstil */
 body {
-  font-family: 'Georgia', serif;
-  background-color: #111;
-  color: #f5f5f5;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-image: url('../Bilder/Holzhintergrund.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  font-family: 'Georgia', serif; /* Schriftart für die gesamte Seite */
+  background-color: #111; /* Dunkler Hintergrund */
+  color: #f5f5f5; /* Helle Standardschriftfarbe */
+  min-height: 100vh; /* Mindesthöhe = volle Bildschirmhöhe */
+  display: flex; /* Ermöglicht Flexbox-Layout */
+  flex-direction: column; /* Elemente (z. B. Header, Main, Footer) werden untereinander angeordnet */
+  background-size: cover; /* Bild soll gesamten Bereich abdecken */
+  background-repeat: no-repeat; /* Bild soll sich nicht wiederholen */
+  background-attachment: fixed; /* Bild bleibt fixiert beim Scrollen */
 }
 
+/* Header-Stil */
 header {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8); /* Halbtransparenter schwarzer Hintergrund */
+  padding: 1rem 2rem; /* Innenabstand oben/unten 1rem, rechts/links 2rem */
+  position: sticky; /* Bleibt oben kleben beim Scrollen */
+  top: 0; /* Abstand von oben */
+  z-index: 1000; /* Hohe Stapelreihenfolge */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Schlagschatten unterhalb */
 }
 
+/* Navigation */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; /* Flexbox: horizontal nebeneinander */
+  justify-content: space-between; /* Abstand zwischen linkem und rechtem Bereich */
+  align-items: center; /* Vertikal zentriert */
 }
 
 .nav-left {
   display: flex;
-  align-items: center;
+  align-items: center; /* Inhalte vertikal ausrichten */
 }
 
 .nav-right {
   display: flex;
-  gap:2rem;
+  gap:2rem; /* Abstand zwischen Navigationspunkten */
 }
 
+/* Navigationslinks */
 .navbar a {
-  color: #f0e6d2;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+  color: #f0e6d2; /* Helle Schriftfarbe */
+  text-decoration: none; /* Keine Unterstreichung */
+  font-weight: bold; /* Fett */
+  font-size: 1rem; /* Standardgröße */
+  padding: 0.5rem 1rem; /* Innenabstand */
+  border-radius: 5px; /* Abgerundete Ecken */
+  transition: all 0.3s ease; /* Weicher Übergang bei Hover */
 }
 
 .navbar a:hover {
-  background-color: #333;
-  color: #fff;
+  background-color: #333; /* Hintergrund bei Hover */
+  color: #fff; /* Schriftfarbe bei Hover */
 }
 
+/* Logo-Container */
 .logo {
-  height: 50px; /* gleiche Höhe wie Navbar */
-  width: 50px;
-  overflow: visible;
+  height: 50px; /* Höhe des Logos */
+  width: 50px; /* Breite */
+  overflow: visible; /* Inhalt darf überlaufen */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 1;
-  margin-left: 1rem; /* z. B. oder 20px, anpassen nach Wunsch */
+  margin-left: 1rem; /* Abstand nach links */
 }
 
 .logo img {
-  height: 150%;
-  transform: scale(1.8); /* vergrößert Bild optisch */
-  transform-origin: center;
+  height: 150%; /* Bild etwas größer als Container */
+  transform: scale(1.8); /* Vergrößert Bild optisch */
+  transform-origin: center; /* Skalierung von der Mitte */
   display: block;
 }
 
+/* Hauptbereich */
 main {
-  flex: 1;
+  flex: 1; /* Nimmt restlichen verfügbaren Platz ein */
   padding: 3rem 1rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; /* Zentriert den Inhalt */
   width: 100%;
 }
 
+/* Hauptüberschrift */
 h1 {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2.5rem;
   font-family: 'Georgia', serif;
   color: #e8d8b4;
-  letter-spacing: 1px;
+  letter-spacing: 1px; /* Abstand zwischen Buchstaben */
 }
 
+/* Gitter für Kategorien */
 .category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
+  display: grid; /* Aktiviert das CSS-Grid-Layout */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Automatische Spaltenanzahl, min. 320px breit, max. gleichmäßig verteilt */
+  gap: 2.5rem; /* Abstand zwischen den Boxen */
 }
 
+/* Kategoriebox */
 .category-box {
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s ease;
-  text-decoration: none;
-  color: #f0e6d2;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-  border: 1px solid #3e3e3e;
+  background-color: rgba(0, 0, 0, 0.7); /* Halbtransparenter schwarzer Hintergrund */
+  border-radius: 16px; /* Abgerundete Ecken */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6); /* Schatteneffekt für Tiefe */
+  overflow: hidden; /* Überstehender Inhalt wird ausgeblendet */
+  text-align: center; /* Zentrierter Text */
+  transition: transform 0.3s ease; /* Weicher Übergang beim Hover */
+  text-decoration: none; /* Keine Unterstreichung (z. B. bei Links) */
+  color: #f0e6d2; /* Helle Schriftfarbe */
+  height: 400px; /* Feste Höhe der Box */
+  display: flex; /* Flexbox-Layout aktivieren */
+  flex-direction: column; /* Inhalt vertikal anordnen */
+  justify-content: center; /* Inhalt vertikal zentrieren */
+  align-items: center; /* Inhalt horizontal zentrieren */
+  padding: 1.5rem; /* Innenabstand */
+  border: 1px solid #3e3e3e; /* Dezente Rahmenlinie */
 }
 
+/* Hovereffekt für Kategoriebox */
 .category-box:hover {
-  transform: translateY(-8px);
+  transform: translateY(-8px); /* Hebt die Box leicht an, wenn Maus darüber ist */
 }
 
+/* Container für das Bild in der Kategoriebox */
 .category-image-wrapper {
-  height: 220px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
+  height: 220px; /* Feste Höhe für den Bildbereich */
+  display: flex; /* Flexbox zur Zentrierung */
+  justify-content: center; /* Bild horizontal zentrieren */
+  align-items: center; /* Bild vertikal zentrieren */
+  margin-bottom: 1rem; /* Abstand nach unten zum Text */
 }
 
 .category-image-wrapper img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+  max-height: 100%; /* Bild füllt den Container in der Höhe aus */
+  max-width: 100%; /* Bild füllt den Container in der Breite aus */
+  object-fit: cover; /* Bild wird passend und vollständig angezeigt (evtl. beschnitten) */
+  border-radius: 8px; /* Abgerundete Bildecken */
 }
 
+/* Überschrift in der Kategoriebox */
 .category-box h2 {
-  font-size: 1.4rem;
-  margin-top: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #e8d8b4;
+  font-size: 1.4rem; /* Schriftgröße */
+  margin-top: 1rem; /* Abstand nach oben */
+  text-transform: uppercase; /* Alle Buchstaben groß schreiben */
+  letter-spacing: 1px; /* Abstand zwischen Buchstaben */
+  color: #e8d8b4; /* Helle, goldene Farbe für die Überschrift */
 }
 
+/* Footer-Styling */
 footer {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #aaa;
-  text-align: center;
-  padding: 1rem;
-  margin-top: auto;
-  font-size: 0.9rem;
+  background-color: rgba(0, 0, 0, 0.8); /* Dunkler halbtransparenter Hintergrund */
+  color: #aaa; /* Graue Schriftfarbe */
+  text-align: center; /* Zentrierter Text */
+  padding: 1rem; /* Innenabstand */
+  margin-top: auto; /* Footer immer am unteren Rand des Bildschirms, wenn Platz da ist */
+  font-size: 0.9rem; /* Etwas kleinere Schriftgröße */
 }
 
-/* Responsiveness */
+/* Responsive Navbar */
 @media (max-width: 600px) {
   .navbar {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Navigationselemente untereinander anordnen (statt nebeneinander) */
+    align-items: center;     /* Zentriert alle Elemente horizontal */
   }
 
   .navbar a {
-    width: 100%;
-    text-align: center;
+    width: 100%;            /* Jeder Link nimmt volle Breite ein */
+    text-align: center;     /* Text im Link wird zentriert dargestellt */
   }
 }
 
-
-
-
-/* Section Headings */
+/* Abschnittsüberschrift */
 .section-heading {
-  text-align: center;
-  color: #e8d8b4;
-  font-size: 2rem;
-  margin: 3rem 0 1.5rem;
+  text-align: center;       /* Text wird mittig ausgerichtet */
+  color: #e8d8b4;           /* Helle, gold-gelbe Farbe */
+  font-size: 2rem;          /* Schriftgröße */
+  margin: 3rem 0 1.5rem;    /* Abstand: oben 3rem, unten 1.5rem */
 }
 
+/* Header (erneute Definition – evtl. redundant, falls weiter oben schon gesetzt) */
 header {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
- /* margin-bottom: 4rem;  NEU: Abstand nach unten */
+  background-color: rgba(0, 0, 0, 0.8); /* Halbtransparenter schwarzer Hintergrund */
+  padding: 1rem 2rem;                  /* Innenabstand: oben/unten 1rem, rechts/links 2rem */
+  position: sticky;                   /* Header bleibt beim Scrollen oben sichtbar */
+  top: 0;                             /* Abstand vom oberen Rand */
+  z-index: 1000;                      /* Hohe Stapelreihenfolge (überlappt andere Inhalte) */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Dunkler Schlagschatten nach unten */
+  /* margin-bottom: 4rem;             // Abstand nach unten – aktuell deaktiviert (kommentiert) */
 }
 
-
-
-
-/* Hero Section Styling */
+/* Hero Section */
 .hero {
-  background-color: #1f1e1e;
-  padding: 4rem 2rem;
-  min-height: 100vh; /* NEU: ganze Höhe des Viewports */
-  text-align: center;
-  color: #fff;
-  position: relative;
+  background-color: #1f1e1e;           /* Dunkler Hintergrund für Kontrast */
+  padding: 4rem 2rem;                  /* Großzügiger Innenabstand oben/unten und seitlich */
+  min-height: 100vh;                  /* Nimmt mindestens die volle Höhe des Bildschirms ein */
+  text-align: center;                 /* Text standardmäßig zentriert */
+  color: #fff;                        /* Standard-Schriftfarbe weiß */
+  position: relative;                /* Ermöglicht absolute Positionierung von Kind-Elementen */
 }
 
+/* Hero Überschrift */
 .hero h1 {
-  font-size: 3rem;
-  font-family: 'Georgia', serif;
-  color: #f0e6d2;
-  margin-bottom: 1rem;
+  font-size: 3rem;                    /* Große Schriftgröße für Aufmerksamkeit */
+  font-family: 'Georgia', serif;     /* Klassische Serifenschrift */
+  color: #f0e6d2;                     /* Heller, edler Ton */
+  margin-bottom: 1rem;               /* Abstand unterhalb der Überschrift */
 }
 
+/* Hero Textabschnitt */
 .hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  color: #eee;
-  max-width: 600px;
-  margin-left: auto;
+  font-size: 1.2rem;                  /* Etwas größere Leseschrift */
+  margin-bottom: 2rem;               /* Abstand unter dem Absatz */
+  color: #eee;                        /* Heller Grauton */
+  max-width: 600px;                  /* Begrenzte Breite für bessere Lesbarkeit */
+  margin-left: auto;                 /* Zentriert den Absatz horizontal */
   margin-right: auto;
-  text-align: left;
+  text-align: left;                  /* Textausrichtung links, obwohl .hero zentriert ist */
 }
 
+/* Call-to-Action Button */
 .hero-button {
-  background-color: #a98258;
-  color: #fff;
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
-  text-decoration: none;
-  border-radius: 30px;
-  transition: background-color 0.3s ease;
+  background-color: #a98258;         /* Warmer, braun-goldener Ton */
+  color: #fff;                        /* Weiße Schriftfarbe */
+  padding: 0.75rem 2rem;              /* Großzügiger Klickbereich */
+  font-size: 1.1rem;                  /* Gut lesbare Schriftgröße */
+  text-decoration: none;             /* Keine Unterstreichung */
+  border-radius: 30px;               /* Starke Abrundung für pillenförmigen Button */
+  transition: background-color 0.3s ease; /* Weicher Hover-Effekt */
 }
 
 .hero-button:hover {
-  background-color: #8a6c4b;
+  background-color: #8a6c4b;         /* Etwas dunklere Farbe beim Überfahren mit Maus */
 }
 
+/* Container für Inhalt der Hero Section */
 .hero-box {
-  max-width: 1200px;
-  margin: auto;
-  background-color: rgba(20, 20, 20, 0.95);
-  display: flex;
-  flex-wrap: wrap;
-  padding: 3rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(154, 125, 81, 0.7);
-  gap: 2rem;
-  min-height: 400px; /* oder je nach Bedarf anpassen */
-  align-items: center;         /* wichtig: vertikal zentrieren */
+  max-width: 1200px;                 /* Maximalbreite */
+  margin: auto;                      /* Zentriert den Container horizontal */
+  background-color: rgba(20, 20, 20, 0.95); /* Fast schwarzer, leicht transparenter Hintergrund */
+  display: flex;                     /* Flexbox-Layout */
+  flex-wrap: wrap;                   /* Inhalte umbrechen bei kleiner Bildschirmbreite */
+  padding: 3rem;                     /* Innenabstand */
+  border-radius: 16px;               /* Abgerundete Ecken */
+  box-shadow: 0 8px 32px rgba(154, 125, 81, 0.7); /* Goldener Schatteneffekt */
+  gap: 2rem;                         /* Abstand zwischen Kind-Elementen */
+  min-height: 400px;                 /* Mindesthöhe des Containers */
+  align-items: center;              /* Vertikale Zentrierung der Inhalte */
 }
 
+/* Linke Spalte */
 .hero-left {
-  flex: 1;
-  min-width: 280px;
+  flex: 1;                           /* Flexibel – nimmt gleichen Platz wie rechte Spalte ein */
+  min-width: 280px;                  /* Mindestbreite für mobile Geräte */
 }
 
 .hero-left h1 {
-  font-size: 3rem;
+  font-size: 3rem;                   /* Große Überschrift */
   font-family: 'Georgia', serif;
-  color: #f8f4ea;
-  margin-bottom: 6rem;
+  color: #f8f4ea;                    /* Heller, leicht gelblicher Farbton */
+  margin-bottom: 6rem;              /* Viel Abstand zum nächsten Inhalt */
 }
 
+/* Vertikale Trennlinie zwischen links und rechts */
 .hero-divider {
-  width: 2px;
-  height: 250px; /* oder so hoch wie deine Bilder */
-  background-color: #bbb;
-  margin: 0 2rem;
+  width: 2px;                        /* Dünne Linie */
+  height: 250px;                     /* Höhe der Linie */
+  background-color: #bbb;            /* Hellgraue Farbe */
+  margin: 0 2rem;                    /* Horizontaler Abstand zur linken und rechten Seite */
 }
 
+/* Beschreibungstext (z. B. unter Überschrift) */
 .hero-description {
-  font-size: 1rem;
-  color: #ccc;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  font-size: 1rem;                   /* Standardgröße */
+  color: #ccc;                       /* Grauer Farbton */
+  line-height: 1.6;                  /* Zeilenhöhe für gute Lesbarkeit */
+  margin-bottom: 2rem;              /* Abstand nach unten */
 }
 
+/* Kontaktbutton */
 .hero-contact {
-  background-color: #a98258;
+  background-color: #a98258;         /* Gleiche Farbe wie CTA-Button */
   color: #fff;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.5rem;           /* Etwas kleiner als hero-button */
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
-  display: inline-block;
-  margin-top: 2rem;
+  display: inline-block;             /* Verhalten wie Block, aber ohne volle Breite */
+  margin-top: 2rem;                  /* Abstand nach oben */
   transition: background-color 0.3s ease;
 }
 
 .hero-contact:hover {
-  background-color: #8a6c4b;
+  background-color: #8a6c4b;         /* Hover-Farbe dunkler */
 }
 
+/* Rechte Spalte – Bilder */
 .hero-right {
   flex: 1;
-  display: flex;
-  flex-direction: row;         /* horizontal nebeneinander */
-  align-items: center;         /* vertikal zentriert */
-  justify-content: center;
-  gap: 1rem;
+  display: flex;                     /* Flex-Container */
+  flex-direction: row;               /* Bilder nebeneinander */
+  align-items: center;               /* Vertikal zentriert */
+  justify-content: center;           /* Horizontal zentriert */
+  gap: 1rem;                         /* Abstand zwischen Bildern */
   min-width: 280px;
   height: 100%;
 }
 
+/* Einzelne Bilder */
 .hero-right img {
-  width: 170px;
-  height: 365px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
-  transition: transform 0.3s ease;
+  width: 170px;                      /* Feste Breite */
+  height: 365px;                     /* Feste Höhe */
+  object-fit: cover;                 /* Bild skaliert und beschnitten */
+  border-radius: 12px;               /* Abgerundete Ecken */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6); /* Schatten für Tiefenwirkung */
+  transition: transform 0.3s ease;   /* Weicher Zoom-Effekt beim Hover */
 }
 
 .hero-right img:hover {
-  transform: scale(1.05);
+  transform: scale(1.05);            /* Bild leicht vergrößern bei Hover */
 }
 
-
-
-
-
-/* Product Section */
+/* Produktbereich */
 .products {
-  padding: 4rem 2rem;
-  background-color: #111;
+  padding: 4rem 2rem;              /* Oben/unten 4rem, rechts/links 2rem Abstand */
+  background-color: #111;          /* Sehr dunkler Hintergrund für Kontrast */
 }
 
+/* Überschrift */
 .section-heading {
-  font-size: 2.2rem;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 3rem;
-  font-family: 'Georgia', serif;
+  font-size: 2.2rem;               /* Große, markante Schriftgröße */
+  color: #fff;                     /* Weiße Schriftfarbe */
+  text-align: center;              /* Zentriert die Überschrift */
+  margin-bottom: 3rem;             /* Abstand nach unten */
+  font-family: 'Georgia', serif;   /* Klassische Schriftart für Eleganz */
 }
 
+/* Einzelnes Produkt-Layout */
 .product-entry {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 4rem;
+  display: flex;                   /* Flexbox: Inhalte nebeneinander */
+  flex-wrap: wrap;                /* Inhalte umbrechen, wenn zu breit */
+  gap: 2rem;                      /* Abstand zwischen Bild und Text */
+  align-items: center;            /* Vertikale Zentrierung */
+  margin-bottom: 4rem;            /* Abstand zum nächsten Produkt */
 }
 
+/* Umgekehrte Reihenfolge bei Bedarf (Bild rechts statt links) */
 .product-entry.reverse {
-  flex-direction: row-reverse;
+  flex-direction: row-reverse;    /* Bild und Text tauschen Plätze */
 }
 
+/* Produktbild */
 .product-entry img {
-  width: 320px;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+  width: 320px;                   /* Feste Breite des Bildes */
+  border-radius: 10px;            /* Abgerundete Ecken */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.6); /* Schatten für Tiefenwirkung */
 }
 
+/* Textbereich der Produktbeschreibung */
 .product-info {
-  flex: 1;
-  min-width: 250px;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 2rem;
-  border-radius: 10px;
-  border: 1px solid #444;
-  color: #eae3d3;
+  flex: 1;                        /* Nimmt restlichen Platz im Flex-Container ein */
+  min-width: 250px;              /* Mindestbreite bei kleinen Bildschirmen */
+  background-color: rgba(0, 0, 0, 0.8); /* Halbtransparenter schwarzer Hintergrund */
+  padding: 2rem;                  /* Innenabstand rundum */
+  border-radius: 10px;            /* Abgerundete Ecken */
+  border: 1px solid #444;         /* Dezenter Rahmen */
+  color: #eae3d3;                 /* Helle, angenehme Schriftfarbe */
 }
 
 .product-info h3 {
-  font-size: 1.5rem;
-  color: #e8d8b4;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;              /* Größe der Produktüberschrift */
+  color: #e8d8b4;                 /* Warme, goldene Farbe */
+  margin-bottom: 1rem;           /* Abstand unterhalb der Überschrift */
 }
 
 .product-info p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
+  line-height: 1.6;              /* Erhöhte Zeilenhöhe für bessere Lesbarkeit */
+  margin-bottom: 1rem;           /* Abstand nach unten */
 }
 
 .product-info a {
-  color: #a98258;
-  font-weight: bold;
-  text-decoration: none;
+  color: #a98258;                /* Linkfarbe: Goldbraun passend zum Design */
+  font-weight: bold;            /* Fettgedruckter Linktext */
+  text-decoration: none;        /* Keine Unterstreichung */
 }
 
 .product-info a:hover {
-  color: #d8b47c;
+  color: #d8b47c;                /* Hellere Farbe beim Überfahren mit Maus */
 }
 
-
-
-
-/* Responsive */
+/* Responsive-Anpassungen */
 @media (max-width: 768px) {
   .hero-box,
   .product-entry,
   .product-entry.reverse {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column;     /* Inhalte untereinander statt nebeneinander */
+    text-align: center;         /* Zentrierter Text auf kleinen Bildschirmen */
   }
 
   .hero-divider {
-    display: none;
+    display: none;              /* Trennlinie im Hero-Bereich ausblenden bei kleiner Breite */
   }
 
   .hero-right {
-    justify-content: center;
+    justify-content: center;    /* Bilder im Hero-Bereich zentrieren */
   }
 
   .product-info {
-    text-align: left;
+    text-align: left;           /* Text bleibt linksbündig für bessere Lesbarkeit */
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-.slideshow-container {
-  position: relative;
-  max-width: 320px;
-  margin: auto;
-}
-
-.mySlides {
-  display: none;
-}
-
-.mySlides img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-}
-
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  padding: 12px;
-  color: white;
-  font-weight: bold;
-  font-size: 22px;
-  transition: 0.3s ease;
-  user-select: none;
-  background-color: rgba(0,0,0,0.4);
-  border-radius: 3px;
-}
-
-.prev {
-  left: 0;
-}
-
-.next {
-  right: 0;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
