@@ -1,38 +1,40 @@
-/* Reset */
+/* Reset – entfernt Standardabstände und definiert Boxmodell */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Grundlayout für den Body */
 body {
-  font-family: 'Georgia', serif;
-  background-color: rgb(17, 17, 17);
-  color: #f5f5f5;
-  min-height: 100vh;
+  font-family: 'Georgia', serif;            /* Serifenschrift für edlen Look */
+  background-color: rgb(17, 17, 17);         /* Sehr dunkler Hintergrund */
+  color: #f5f5f5;                            /* Helle Standardschriftfarbe */
+  min-height: 100vh;                         /* Gesamthöhe des Bildschirms */
   display: flex;
-  flex-direction: column;
+  flex-direction: column;                    /* Elemente untereinander */
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed;              /* Hintergrund bleibt fixiert beim Scrollen */
 }
 
+/* Kopfbereich */
 header {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);       /* Halbtransparenter schwarzer Hintergrund */
   padding: 1rem 2rem;
-  position: sticky;
+  position: sticky;                           /* Bleibt oben kleben */
   top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  z-index: 1000;                              /* Hohe Stapelreihenfolge */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8);     /* Schatteneffekt */
 }
 
+/* Navigation */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;            /* Platz zwischen linkem und rechtem Teil */
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  
+  flex-wrap: wrap;                            /* Umbruch bei kleiner Breite */
+  gap: 1rem;                                  /* Abstand zwischen Elementen */
 }
 
 .nav-left {
@@ -45,8 +47,9 @@ header {
   gap: 2rem;
 }
 
+/* Navigationslinks */
 .navbar a {
-  color: #f0e6d2;
+  color: #f0e6d2;                             /* Helle Farbe */
   text-decoration: none;
   font-weight: bold;
   font-size: 1rem;
@@ -60,149 +63,159 @@ header {
   color: #fff;
 }
 
+/* Logo-Container */
 .logo {
-  height: 50px;
-  width: 50px;
-  overflow: visible;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  margin-left: 1rem;
+  height: 50px;               /* Höhe des Containers für das Logo */
+  width: 50px;                /* Breite des Containers */
+  overflow: visible;          /* Inhalt darf über den Container hinausragen */
+  display: flex;              /* Flexbox, um Inhalt im Inneren zu positionieren */
+  align-items: center;        /* Vertikale Zentrierung des Logos */
+  justify-content: center;    /* Horizontale Zentrierung */
+  position: relative;         /* Ermöglicht z. B. Positionierung von Kind-Elementen */
+  z-index: 1;                 /* Wird über anderen Elementen angezeigt, falls überlappt */
+  margin-left: 1rem;          /* Abstand nach links vom umgebenden Element */
 }
 
+/* Logo-Bild */
 .logo img {
-  height: 150%;
-  transform: scale(1.8);
-  transform-origin: center;
-  display: block;
+  height: 150%;               /* Bildhöhe ist 150 % des Containers */
+  transform: scale(1.8);      /* Skaliert das Bild 1.8× (optische Vergrößerung) */
+  transform-origin: center;   /* Skaliert aus der Mitte heraus */
+  display: block;             /* Entfernt unnötigen unteren Abstand (kein Inline-Element) */
 }
 
+/* Hauptbereich */
 main {
-  flex: 1;
-  padding: 3rem 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
+  flex: 1;                    /* Füllt den verfügbaren Platz im übergeordneten Flex-Layout */
+  padding: 3rem 1rem;         /* Innenabstand: oben/unten 3rem, seitlich 1rem */
+  max-width: 1200px;          /* Maximale Breite des Inhalts */
+  margin: 0 auto;             /* Zentriert den Bereich horizontal */
+  width: 100%;                /* Nimmt die volle Breite des Containers ein */
 }
 
+/* Hauptüberschrift */
 h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 4rem;
-  font-family: 'Georgia', serif;
-  color: #e8d8b4;
-  letter-spacing: 1px;
+  text-align: center;         /* Zentriert den Text */
+  margin-bottom: 2rem;        /* Abstand unterhalb der Überschrift */
+  font-size: 4rem;            /* Sehr große Schriftgröße */
+  font-family: 'Georgia', serif;  /* Serifenschrift für klassischen Stil */
+  color: #e8d8b4;             /* Warmer Goldton für Text */
+  letter-spacing: 1px;        /* Leichter Abstand zwischen Buchstaben */
 }
 
-/* Produkt-Gitter */
+
+/* Produktgitter (Grid-Layout) */
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
+  display: grid;  /* Aktiviert CSS Grid */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Flexible Spalten: mindestens 320px, maximal 1fr (gleiche Breite) */
+  gap: 2.5rem;     /* Abstand zwischen den Produktkarten */
 }
 
-/* Produktkarte */
+/* Einzelne Produktkarte */
 .product-card {
-  background-color: rgba(60, 56, 56, 0.7);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s ease;
-  color: #f0e6d2;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-  border: 1px solid #3e3e3e;
+  background-color: rgba(60, 56, 56, 0.7); /* Dunkler, transparenter Hintergrund */
+  border-radius: 16px;                    /* Abgerundete Ecken */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6); /* Tiefer Schlagschatten */
+  overflow: hidden;                       /* Alles außerhalb der Box wird abgeschnitten */
+  text-align: center;                     /* Zentrierter Text */
+  transition: transform 0.3s ease;        /* Weicher Hover-Effekt */
+  color: #f0e6d2;                         /* Helle Schriftfarbe */
+  height: 400px;                          /* Feste Höhe */
+  display: flex;                          /* Flexbox zur vertikalen Zentrierung */
+  flex-direction: column;                /* Elemente von oben nach unten anordnen */
+  justify-content: center;               /* Vertikal zentrieren */
+  align-items: center;                   /* Horizontal zentrieren */
+  padding: 1.5rem;                        /* Innenabstand */
+  border: 1px solid #3e3e3e;              /* Dunkler Rahmen */
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-8px);            /* Leichtes Anheben beim Hover */
 }
 
+/* Bildcontainer innerhalb der Produktkarte */
 .product-image-wrapper {
-  height: 220px;
-  width: 100%;
-  overflow: hidden;
+  height: 220px;                          /* Feste Höhe */
+  width: 100%;                            /* Volle Breite der Karte */
+  overflow: hidden;                       /* Bildüberlauf verbergen */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
+  justify-content: center;               /* Bild horizontal zentrieren */
+  align-items: center;                   /* Bild vertikal zentrieren */
+  margin-bottom: 1rem;                   /* Abstand zum Textbereich */
 }
 
 .product-image-wrapper img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
+  max-height: 100%;                      /* Höhe des Bildes darf nicht Container überschreiten */
+  max-width: 100%;                       /* Breite ebenso */
+  object-fit: cover;                     /* Bild wird so beschnitten, dass es den Container füllt */
+  border-radius: 8px;                    /* Leicht abgerundete Ecken */
+  display: block;                        /* Entfernt unerwünschten Leerraum unten */
 }
 
+/* Produkttitel */
 .product-card h2 {
   font-size: 1.4rem;
   margin-top: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #e8d8b4;
+  text-transform: uppercase;             /* Großbuchstaben */
+  letter-spacing: 1px;                   /* Buchstabenabstand */
+  color: #e8d8b4;                        /* Goldener Farbton */
 }
 
+/* Preis oder Zusatztext */
 .product-card p {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #a98258;
+  color: #a98258;                        /* Goldbraun für Preis oder Infos */
   margin: 0.5rem 0 1rem;
 }
 
-/* Button */
+/* Standard-Button */
 button {
   padding: 0.75rem 1.5rem;
-  background-color: #a98258;
+  background-color: #a98258;            /* Warmer Braunton */
   color: #fff;
   border: none;
-  border-radius: 30px;
+  border-radius: 30px;                  /* Runde Form */
   cursor: pointer;
   font-weight: bold;
   font-size: 1rem;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); /* Schatten für 3D-Effekt */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #8a6c4b;
-  transform: scale(1.05);
+  background-color: #8a6c4b;            /* Dunklere Farbe beim Hover */
+  transform: scale(1.05);               /* Leichte Vergrößerung */
 }
 
-/* Footer */
+/* Footer-Stil */
 footer {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #aaa;
+  background-color: rgba(0, 0, 0, 0.8);  /* Dunkler Hintergrund */
+  color: #aaa;                           /* Graue Schrift */
   text-align: center;
   padding: 1rem;
-  margin-top: auto;
+  margin-top: auto;                     /* Schiebt Footer ans Seitenende */
   font-size: 0.9rem;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;         /* Obere Ecken abgerundet */
 }
 
+/* Warenkorbliste */
 #cart-items {
-  list-style: none;
+  list-style: none;                     /* Keine Standard-Punkte */
   padding: 0;
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.5rem;                          /* Abstand zwischen den Einträgen */
 }
 
+/* Einzelne Warenkorb-Karte */
 .cart-card {
   background-color: rgba(60, 56, 56, 0.7);
   border-radius: 16px;
   padding: 2rem 1.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;       /* Bild/Text links, Button rechts */
   align-items: center;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
   border: 1px solid #3e3e3e;
@@ -210,23 +223,26 @@ footer {
 }
 
 .cart-card:hover {
-  transform: none !important;
+  transform: none !important;           /* Kein Effekt bei Hover (bewusst deaktiviert) */
 }
 
+/* Produktname im Warenkorb */
 .cart-details h3 {
   margin: 0;
   font-size: 1.2rem;
   color: #e8d8b4;
 }
 
+/* Preis im Warenkorb */
 .cart-details p {
   margin: 0.3rem 0 0;
   color: #a98258;
   font-weight: bold;
 }
 
+/* Entfernen-Button im Warenkorb */
 .remove-btn {
-  background-color: #8a0c0c;
+  background-color: #8a0c0c;            /* Dunkles Rot */
   padding: 0.5rem 1rem;
   border-radius: 20px;
   color: white;
@@ -237,11 +253,12 @@ footer {
 }
 
 .remove-btn:hover {
-  background-color: #c0392b;
+  background-color: #c0392b;            /* Helleres Rot bei Hover */
 }
 
+/* Zusammenfassung im Warenkorb */
 .cart-summary {
-  text-align: left; /* Jetzt linksbündig */
+  text-align: left;
   font-size: 1.3rem;
   font-weight: bold;
   color: #e8d8b4;
@@ -251,64 +268,69 @@ footer {
   background-color: rgba(60, 56, 56, 0.6);
   border-radius: 10px;
   max-width: 400px;
-  margin-left: 0; /* linksbündig, nicht zentriert oder rechts */
+  margin-left: 0;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+/* Gesamtpreis im Warenkorb */
 #cart-total {
   margin: 0;
 }
 
+
+/* Spezieller Body-Stil für Login-Seite */
 body.login-page {
-  background-color: #1f1e1e; 
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: #1f1e1e;         /* Dunkler Hintergrund für die Login-Seite */
+  background-size: cover;           /* Hintergrundbild füllt den gesamten Bereich */
+  background-position: center;      /* Bild wird zentriert angezeigt */
+  background-attachment: fixed;     /* Hintergrund bleibt beim Scrollen fixiert */
 }
 
+/* Benutzerdefinierte Benachrichtigung (Toast/Alert) */
 .custom-alert {
-  position: fixed;
-  top: 90px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #a98258;
-  color: #fff;
-  border-radius: 12px;
-  padding: 0.6rem 1rem;
-  font-size: 0.85rem;
-  max-width: 320px;
-  width: fit-content;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-  z-index: 1055;
-  opacity: 0.97;
-  display: flex;
-  align-items: left;
-  justify-content: space-between;
-  gap: 0.5rem;
+  position: fixed;                  /* Bleibt an fester Position im Fenster */
+  top: 90px;                        /* Abstand von oben */
+  left: 50%;                        /* Horizontal zentriert */
+  transform: translateX(-50%);     /* Exakte Zentrierung über 50% */
+  background-color: #a98258;       /* Goldbrauner Hintergrund */
+  color: #fff;                      /* Weißer Text */
+  border-radius: 12px;             /* Abgerundete Ecken */
+  padding: 0.6rem 1rem;            /* Innenabstand oben/unten & seitlich */
+  font-size: 0.85rem;              /* Etwas kleinere Schriftgröße */
+  max-width: 320px;                /* Maximale Breite */
+  width: fit-content;              /* Breite passt sich Inhalt an */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); /* Schatteneffekt für Tiefe */
+  z-index: 1055;                   /* Sehr hohe Stapelreihenfolge – über allem */
+  opacity: 0.97;                   /* Fast vollständig sichtbar, leicht transparent */
+  display: flex;                   /* Flexbox-Layout */
+  align-items: left;               /* (Hinweis: "left" ist kein gültiger Wert – besser: flex-start) */
+  justify-content: space-between; /* Elemente mit Abstand verteilen */
+  gap: 0.5rem;                     /* Abstand zwischen Inhalten */
 }
 
+/* Inhalt innerhalb der Benachrichtigung */
 .alert-content {
-  flex-grow: 1;
-  overflow-wrap: break-word;
+  flex-grow: 1;                    /* Nimmt so viel Platz wie möglich ein */
+  overflow-wrap: break-word;      /* Lässt lange Wörter umbrechen */
 }
 
-/* Responsive Design */
+/* Responsive Design für kleine Bildschirme */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column;       /* Navigation vertikal statt horizontal */
+    align-items: center;          /* Zentrierung der Navigationselemente */
   }
 
   .navbar a {
-    width: 100%;
-    text-align: center;
+    width: 100%;                  /* Links nehmen die gesamte Breite ein */
+    text-align: center;           /* Zentrierter Text in den Links */
   }
 
   .product-card {
-    height: auto;
+    height: auto;                 /* Karte wächst mit dem Inhalt */
   }
 
   button {
-    width: 100%;
+    width: 100%;                  /* Buttons füllen die gesamte Breite */
   }
 }
